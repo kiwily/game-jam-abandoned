@@ -52,15 +52,21 @@ const Controler = (player1Event, player2Event) => {
         } else {
             eventName = player + direction
             if (player === 1) {
-                console.log("Player 1 moving ", player1Event)
-                window.dispatchEvent(new CustomEvent(player1Event, { 
+                window.dispatchEvent(new CustomEvent(player, { 
                     bubbles: true,
-                    detail:{direction: direction} }));
+                    detail:{
+                        direction: direction,
+                        start: true
+                    } 
+                }));
             } else if (player === 2) {
-                console.log("Player 2 moving ", player2Event)
                 window.dispatchEvent(new CustomEvent(player2Event, { 
                     bubbles: true,
-                    detail:{direction: direction} }));
+                    detail:{
+                        direction: direction,
+                        start: true
+                    } 
+                }));
             }
         }
     }, false);

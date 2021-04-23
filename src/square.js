@@ -1,20 +1,19 @@
-const ORIGIN = Vector.create(0, 0);
+
 
 const MOVE_UP = (body) => {
-    console.log("up")
-    Body.applyForce(body, ORIGIN, Vector.create(0, 0.1));
+    Body.applyForce(body, body.position, {x: 0, y: -0.1});
 };
 
 const MOVE_DOWN = (body) => {
-    Body.applyForce(body, ORIGIN, Vector.create(0, -0.1));
+    Body.applyForce(body, body.position, {x: 0, y: 0.1});
 };
 
 const MOVE_RIGHT = (body) => {
-    Body.applyForce(body, ORIGIN, Vector.create(0.1, 0));
+    Body.applyForce(body, body.position, {x: 0.1, y: 0});
 };
 
 const MOVE_LEFT = (body) => {
-    Body.applyForce(body, ORIGIN, Vector.create(-0.1, 0));
+    Body.applyForce(body, body.position, {x: -0.1, y: 0});
 };
 
 const MOVE = {
@@ -26,6 +25,7 @@ const MOVE = {
 
 function Square(x_init, y_init, playerEvent) {
     const body = Bodies.rectangle(x_init, y_init, 80, 80);
+    Body.setMass(body, 10)
     console.log("inst", playerEvent)
 
     function move(to) {
