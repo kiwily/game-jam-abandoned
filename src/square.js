@@ -22,7 +22,7 @@ const MOVE = {
 };
 
 function Square(x_init, y_init, playerEvent) {
-    body = Bodies.rectangle(x_init, y_init, 50, 50);
+    body = Bodies.rectangle(x_init, y_init, 80, 80);
 
     document.addEventListener(playerEvent, function (e) {
         MOVE[e.direction](body)
