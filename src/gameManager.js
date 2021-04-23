@@ -3,7 +3,7 @@ import { controler } from "controler.controler"
 let player1Event = "PLAYER_1_EVENT";
 let player2Event = "PLAYER_2_EVENT";
 
-init = () => {
+const init = () => {
 
     document.addEventListener("SWITCH", function (e) {
         console.log("SWITCHING")

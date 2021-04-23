@@ -41,7 +41,7 @@ const keyDic = {
         "direction": "SWITCH"
     }
 }
-controler = (player1Event, player2Event) => {
+const controler = (player1Event, player2Event) => {
 
     document.addEventListener('keydown', function (e) {
         player, direction = keyDic[e.code]
