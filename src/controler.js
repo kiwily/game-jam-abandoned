@@ -1,39 +1,63 @@
 
-
-function link(){
-
-}
-const event = new Event('build');
-
-// Listen for the event.
-elem.addEventListener('build', function (e) { /* ... */ }, false);
-
-// Dispatch the event.
-elem.dispatchEvent(event);
-
-const event = new CustomEvent('build', { detail: elem.dataset.time });
-
-
-function eventHandler(e) {
-  console.log('The time is: ' + e.detail);
-}
-
-
-
-function simulateClick() {
-    const event = new MouseEvent('click', {
-      view: window,
-      bubbles: true,
-      cancelable: true
-    });
-    const cb = document.getElementById('checkbox');
-    const cancelled = !cb.dispatchEvent(event);
-  
-    if (cancelled) {
-      // A handler called preventDefault.
-      alert("cancelled");
-    } else {
-      // None of the handlers called preventDefault.
-      alert("not cancelled");
+const keyDic = {
+    87: {
+        "player": 1,
+        "direction": "UP"
+    },
+    65: {
+        "player": 1,
+        "direction": "LEFT"
+    },
+    68: {
+        "player": 1,
+        "direction": "RIGHT"
+    },
+    83: {
+        "player": 1,
+        "direction": "DOWN"
+    },
+    81: {
+        "player": 1,
+        "direction": "SWITCH"
+    },
+    38: {
+        "player": 2,
+        "direction": "UP"
+    },
+    37: {
+        "player": 2,
+        "direction": "LEFT"
+    },
+    39: {
+        "player": 2,
+        "direction": "RIGHT"
+    },
+    40: {
+        "player": 2,
+        "direction": "DOWN"
+    },
+    191: {
+        "player": 2,
+        "direction": "SWITCH"
     }
-  }
+}
+controler = (player1Event, player2Event) => {
+
+    document.addEventListener('keydown', function (e) {
+        player, direction = keyDic[e.code]
+        
+        if (direction === "SWITCH") {
+            elem.dispatchEvent(new CustomEvent("SWITCH"));
+        } else {
+            if (player === 1) {
+                console.log("Player 1 moving ", direction)
+                elem.dispatchEvent(new CustomEvent(player1Event, { direction: direction }));
+            } else if (player === 2) {
+                console.log("Player 2 moving ", direction)
+                elem.dispatchEvent(new CustomEvent(player2Event, { direction: direction }));
+            }
+        }
+    }, false);
+};
+
+export { controler };
