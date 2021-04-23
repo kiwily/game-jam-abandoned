@@ -4,7 +4,8 @@
   "description": "1er game jam en Irlande",
   "main": "app.js",
   "scripts": {
-    "start": "npx http-server",
+    "start": "nodemon --exec npm run server",
+    "server": "npx http-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,5 +18,7 @@
     "url": "https://github.com/kiwily/game-jam-abandoned/issues"
   },
   "homepage": "https://github.com/kiwily/game-jam-abandoned#readme",
-  "dependencies": {}
+  "dependencies": {
+    "nodemon": "^2.0.7"
+  }
 }
