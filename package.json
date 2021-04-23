@@ -2,7 +2,7 @@
   "name": "game-jam-abandoned",
   "version": "1.0.0",
   "description": "1er game jam en Irlande",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/kiwily/game-jam-abandoned/issues"
   },
-  "homepage": "https://github.com/kiwily/game-jam-abandoned#readme"
+  "homepage": "https://github.com/kiwily/game-jam-abandoned#readme",
+  "dependencies": {
+    "matter-js": "^0.17.1"
+  }
 }
