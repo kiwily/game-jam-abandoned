@@ -1,17 +1,19 @@
+
+
 const MOVE_UP = (body) => {
-    body.setVelocity(bodyA, { x: 0, y: -10 });
+    Body.setVelocity(body, { x: 0, y: -10 });
 };
 
 const MOVE_DOWN = (body) => {
-    body.setVelocity(bodyA, { x: 0, y: 10 });
+    Body.setVelocity(body, { x: 0, y: 10 });
 };
 
 const MOVE_RIGHT = (body) => {
-    body.setVelocity(bodyA, { x: 10, y: 0 });
+    Body.setVelocity(body, { x: 10, y: 0 });
 };
 
 const MOVE_LEFT = (body) => {
-    body.setVelocity(bodyA, { x: -10, y: 0 });
+    Body.setVelocity(body, { x: -10, y: 0 });
 };
 
 const MOVE = {
@@ -22,11 +24,14 @@ const MOVE = {
 };
 
 function Square(x_init, y_init, playerEvent) {
-    body = Bodies.rectangle(x_init, y_init, 80, 80);
+    const body = Bodies.rectangle(x_init, y_init, 80, 80);
+    console.log("inst", playerEvent)
 
-    document.addEventListener(playerEvent, function (e) {
-        MOVE[e.direction](body)
-    }, false);
+    function move(to) {
+        MOVE[to](body);
+    };
+
+    window.addEventListener(playerEvent, (e) => move(e.detail.direction));
 
     return body;
 };

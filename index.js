@@ -3,7 +3,8 @@ const Engine = Matter.Engine,
     Render = Matter.Render,
     Runner = Matter.Runner,
     Bodies = Matter.Bodies,
-    Composite = Matter.Composite;
+    Composite = Matter.Composite,
+    Body = Matter.Body;
 
 // create an engine
 const engine = Engine.create();
