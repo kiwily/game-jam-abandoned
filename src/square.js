@@ -1,7 +1,7 @@
 
 
 const MOVE_UP = (body) => {
-    Body.setVelocity(body, { x: 0, y: -10 });
+    Body.applyForce(body, { x: body.x, y: body.x });
 };
 
 const MOVE_DOWN = (body) => {
