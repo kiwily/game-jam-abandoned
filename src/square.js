@@ -1,19 +1,19 @@
 
 
 const MOVE_UP = (body) => {
-    Body.applyForce(body, { x: body.x, y: body.x });
+    Body.applyForce(body, { x: body.x, y: body.x }, { x: 0, y: 10 });
 };
 
 const MOVE_DOWN = (body) => {
-    Body.setVelocity(body, { x: 0, y: 10 });
+    Body.applyForce(body, { x: body.x, y: body.x }, { x: 0, y: -10 });
 };
 
 const MOVE_RIGHT = (body) => {
-    Body.setVelocity(body, { x: 10, y: 0 });
+    Body.applyForce(body, { x: body.x, y: body.x }, { x: 10, y: 0 });
 };
 
 const MOVE_LEFT = (body) => {
-    Body.setVelocity(body, { x: -10, y: 0 });
+    Body.applyForce(body, { x: body.x, y: body.x }, { x: -10, y: 0 });
 };
 
 const MOVE = {
