@@ -25,14 +25,13 @@ const MOVE = {
 
 function Square(x_init, y_init, playerEvent) {
     const body = Bodies.rectangle(x_init, y_init, 80, 80);
-    Body.setMass(body, 10)
-    console.log("inst", playerEvent)
+    Body.setMass(body, 10);
 
     function move(to) {
         MOVE[to](body);
     };
 
     window.addEventListener(playerEvent, (e) => move(e.detail.direction));
-
+    
     return body;
 };

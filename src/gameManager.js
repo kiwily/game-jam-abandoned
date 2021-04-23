@@ -24,4 +24,9 @@ Render.run(render);
 const runner = Runner.create();
 
 // run the engine
-Runner.run(runner, engine);
+function loop() {
+    Engine.update(engine, 1000/60)
+    requestAnimationFrame(loop);
+}
+
+loop()
