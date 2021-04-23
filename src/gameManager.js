@@ -13,3 +13,14 @@ function GameManager() {
   // add all of the bodies to the world
   Composite.add(engine.world, Object.values(squares));
 };
+
+GameManager();
+
+// run the renderer
+Render.run(render);
+
+// create runner
+const runner = Runner.create();
+
+// run the engine
+Runner.run(runner, engine);

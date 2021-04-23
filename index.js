@@ -3,8 +3,9 @@ const Engine = Matter.Engine,
     Render = Matter.Render,
     Runner = Matter.Runner,
     Bodies = Matter.Bodies,
+    Body = Matter.Body,
     Composite = Matter.Composite,
-    Body = Matter.Body;
+    Vector = Matter.Vector;
 
 // create an engine
 const engine = Engine.create();
@@ -14,14 +15,3 @@ const render = Render.create({
     element: document.body,
     engine: engine
 });
-
-GameManager();
-
-// run the renderer
-Render.run(render);
-
-// create runner
-const runner = Runner.create();
-
-// run the engine
-Runner.run(runner, engine);
