@@ -13,20 +13,21 @@ function GameManager() {
   // add all of the bodies to the world
   Composite.add(engine.world, Object.values(squares));
   Controler(player1Event, player2Event)
+
+  
+  // run the renderer
+  Render.run(render);
+  
+  // create runner
+  const runner = Runner.create();
+  loop()
 };
 
 GameManager();
 
-// run the renderer
-Render.run(render);
-
-// create runner
-const runner = Runner.create();
 
 // run the engine
 function loop() {
     Engine.update(engine, 1000/60)
     requestAnimationFrame(loop);
 }
-
-loop()
