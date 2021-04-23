@@ -6,8 +6,8 @@ function GameManager() {
 
 
   const squares = {
-    squareA: Square(400, 200, "bonjour"),
-    squareB: Square(450, 50, "bonjour"),
+    squareA: Square(400, 200, player1Event),
+    squareB: Square(450, 50, player2Event),
   };
 
   // add all of the bodies to the world
