@@ -2,19 +2,19 @@ const ORIGIN = Vector.create(0, 0);
 
 const MOVE_UP = (body) => {
     console.log("up")
-    Body.applyForce(body, ORIGIN, Vector.create(0, 10));
+    Body.applyForce(body, ORIGIN, Vector.create(0, 0.1));
 };
 
 const MOVE_DOWN = (body) => {
-    Body.applyForce(body, ORIGIN, Vector.create(0, -10));
+    Body.applyForce(body, ORIGIN, Vector.create(0, -0.1));
 };
 
 const MOVE_RIGHT = (body) => {
-    Body.applyForce(body, ORIGIN, Vector.create(10, 0));
+    Body.applyForce(body, ORIGIN, Vector.create(0.1, 0));
 };
 
 const MOVE_LEFT = (body) => {
-    Body.applyForce(body, ORIGIN, Vector.create(-10, 0));
+    Body.applyForce(body, ORIGIN, Vector.create(-0.1, 0));
 };
 
 const MOVE = {

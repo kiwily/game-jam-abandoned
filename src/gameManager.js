@@ -12,6 +12,7 @@ function GameManager() {
 
   // add all of the bodies to the world
   Composite.add(engine.world, Object.values(squares));
+  Controler(player1Event, player2Event)
 };
 
 GameManager();
