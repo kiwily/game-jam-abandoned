@@ -5,6 +5,7 @@ const HEIGHT = 800;
 const Engine = Matter.Engine,
     Render = Matter.Render,
     Runner = Matter.Runner,
+    Events = Matter.Events,
     Body = Matter.Body,
     Bodies = Matter.Bodies,
     Vector = Matter.Vector,

@@ -45,27 +45,27 @@ const Controler = (player1Event, player2Event) => {
 
     window.addEventListener('keydown', function (e) {
         const { player, direction } = keyDic[e.keyCode]
-        console.log(player, direction)
-        
+        // console.log(player, direction)
+
         if (direction === "SWITCH") {
             window.dispatchEvent(new CustomEvent("SWITCH"));
         } else {
             eventName = player + direction
             if (player === 1) {
-                window.dispatchEvent(new CustomEvent(player, { 
+                window.dispatchEvent(new CustomEvent(player, {
                     bubbles: true,
                     detail:{
                         direction: direction,
                         start: true
-                    } 
+                    }
                 }));
             } else if (player === 2) {
-                window.dispatchEvent(new CustomEvent(player2Event, { 
+                window.dispatchEvent(new CustomEvent(player2Event, {
                     bubbles: true,
                     detail:{
                         direction: direction,
                         start: true
-                    } 
+                    }
                 }));
             }
         }

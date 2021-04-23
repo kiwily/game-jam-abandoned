@@ -32,6 +32,6 @@ function Square(x_init, y_init, playerEvent) {
     };
 
     window.addEventListener(playerEvent, (e) => move(e.detail.direction));
-    
+
     return body;
 };
