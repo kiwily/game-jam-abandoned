@@ -1,12 +1,37 @@
 const ulScore = document.querySelector("#ul-score");
 
-
 socket.emit("new client", "name");
 
+
 let assets = {};
+let PLAYER_ID;
 let PLAYERS_ID;
 let PLAYERS_LOST;
 let PLAYERS_COLOR;
+
+// Dispatch key pressed
+window.addEventListener('keydown', function (e) {
+    const keyCode = e?.keyCode || null;
+    if (action){
+        socket.emit("client keyboard", {
+            playerId: PLAYER_ID,
+            keyDown: true,
+            keyCode
+        });
+    }
+}, false);
+
+// Dispatch key released
+window.addEventListener('keydown', function (e) {
+    const keyCode = e?.keyCode || null;
+    if (action){
+        socket.emit("client keyboard", {
+            playerId: PLAYER_ID,
+            keyDown: false,
+            keyCode
+        });
+    }
+}, false);
 
 function renderUlScore() {
     while (ulScore.firstChild) {
@@ -29,7 +54,6 @@ function renderUlScore() {
 // Initialisation for organizing objects
 socket.on("client update", function(data) {
     // Updating players
-    // console.log("client update >>>", data);
     PLAYERS_ID = data.players_id;
     PLAYERS_LOST = data.players_lost;
     PLAYERS_COLOR = data.players_color;
@@ -54,7 +78,6 @@ socket.on("client update", function(data) {
                 }
             };
             asset = Bodies.rectangle(object.position.x, object.position.y, 1 , 1, props);
-            console.log(asset)
             asset.angle = object.angle;
             Composite.add(engine.world, asset)
             // Remember this object for future updates

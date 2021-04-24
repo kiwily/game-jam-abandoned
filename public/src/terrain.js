@@ -33,7 +33,6 @@ function Terrain() {
 
     const width = RATIO * w;
     const height = RATIO * h;
-    console.log("Asset", assetLink, w, h);
 
     const angle = Math.random() * Math.PI * 2;
     const amplitude = 50 + 100 * Math.random();
