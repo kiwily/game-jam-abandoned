@@ -7,7 +7,11 @@ function Switcher(players) {
         isStatic: true,
         isSensor: true,
         render: {
-            fillStyle: "#ff00ff"
+            sprite: {
+                texture: "./assets/jumperpack_kenney/PNG/Items/carrot.png",
+                xScale: 0.18,
+                yScale: 0.18
+            }
        }
     });
     Body.setMass(body, 55);

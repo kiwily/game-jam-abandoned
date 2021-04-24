@@ -10,8 +10,9 @@ const DEFAULT_MOVING = {
     "EXPLOSION_Y": 0
 };
 
-function Square(x_init, y_init, playerEvent, cId) {
+function Square(x_init, y_init, playerEvent, cId, assets) {
     let colorId = cId;
+    let currentAssetTime = 0;
     // Map for fluid movements
     let isMoving = Object.create(DEFAULT_MOVING);
     // Instantiating the rectangle with its color
@@ -21,6 +22,11 @@ function Square(x_init, y_init, playerEvent, cId) {
         render: {
             fillStyle: PLAYERS_COLOR[colorId],
             lineWidth: 3,
+            sprite: {
+                texture: "./assets/jumperpack_kenney/PNG/Players/bunny1_ready.png",
+                xScale: 0.18,
+                yScale: 0.18
+            }
        }
     });
     Body.setMass(body, 15);
@@ -52,6 +58,14 @@ function Square(x_init, y_init, playerEvent, cId) {
     });
 
     Events.on(engine, 'beforeUpdate', function(event) {
+        console.log(body.angle)
+        Body.rotate(body, -body.angle/30)
+        // Update du sprite
+        // currentAssetTime ++;
+        // if (currentAssetTime >= 20){
+        //     currentAssetTime = 0;
+        // }
+        // const t = Math.floor(currentAssetTime/10);
         // Sortie sur les bords
         if (body.position.x < -5){
             Body.setPosition(body, {x: WIDTH + 2, y: body.position.y});
@@ -80,25 +94,30 @@ function Square(x_init, y_init, playerEvent, cId) {
         // Periodic update for fluid movements
         let xForce = 0;
         let yForce = 0;
-        if (isMoving["UP"]){
-            if (isMoving["JUMPABLE"]){
-                yForce = -0.4;
-                isMoving["JUMPABLE"] = false;
-            }
-        }
-        if (isMoving["DOWN"]){
-            yForce = 0.01;
-        }
-        if (isMoving["RIGHT"]){
-            xForce = 0.015;
-        }
-        if (isMoving["LEFT"]){
-            xForce = -0.015;
-        }
         if (isMoving["EXPLOSION"]){
+            //body.render.sprite.texture = assets.hurt[t];
             xForce = isMoving["EXPLOSION_X"];
             yForce = isMoving["EXPLOSION_Y"];
             isMoving["EXPLOSION"] = false;
+        } else if (isMoving["UP"]){
+            if (isMoving["JUMPABLE"]){
+                //body.render.sprite.texture = assets.jump[t];
+                yForce = -0.4;
+                isMoving["JUMPABLE"] = false;
+            }
+        } else if (isMoving["DOWN"]){
+            //body.render.sprite.texture = assets.jump[t];
+            yForce = 0.01;
+        } else if (isMoving["RIGHT"]){
+            //body.render.sprite.texture = assets.walk[t];
+            xForce = 0.015;
+        } else if (isMoving["LEFT"]){
+            //body.render.sprite.texture = assets.walk[t];
+            //body.render.sprite.xScale = -1;
+            xForce = -0.015;
+        } else {
+            console.log("waiting")
+            //body.render.sprite.texture = assets.stand[t];
         }
         Body.applyForce(body, body.position, {x: xForce, y: yForce});
     });

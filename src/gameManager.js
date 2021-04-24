@@ -1,4 +1,39 @@
 const PLAYERS_EVENT = ["PLAYER_1_EVENT", "PLAYER_2_EVENT"];
+const PLAYERS_ASSETS = [{
+        stand: [
+            "./assets/jumperpack_kenny/PNG/Players/bunny1_ready.png",
+            "./assets/jumperpack_kenny/PNG/Players/bunny1_stand.png"
+        ],
+        walk: [
+            "./assets/jumperpack_kenny/PNG/Players/bunny1_walk1.png",
+            "./assets/jumperpack_kenny/PNG/Players/bunny1_walk2.png"
+        ],
+        hurt: [
+            "./assets/jumperpack_kenny/PNG/Players/bunny1_hurt.png",
+            "./assets/jumperpack_kenny/PNG/Players/bunny1_hurt.png"
+        ],
+        jump: [
+            "./assets/jumperpack_kenny/PNG/Players/bunny1_jump.png",
+            "./assets/jumperpack_kenny/PNG/Players/bunny1_jump.png"
+        ]
+    },{
+        stand: [
+            "./assets/jumperpack_kenny/PNG/Players/bunny2_ready.png",
+            "./assets/jumperpack_kenny/PNG/Players/bunny1_stand.png"
+        ],
+        walk: [
+            "./assets/jumperpack_kenny/PNG/Players/bunny2_walk1.png",
+            "./assets/jumperpack_kenny/PNG/Players/bunny1_walk2.png"
+        ],
+        hurt: [
+            "./assets/jumperpack_kenny/PNG/Players/bunny2_hurt.png",
+            "./assets/jumperpack_kenny/PNG/Players/bunny2_hurt.png"
+        ],
+        jump: [
+            "./assets/jumperpack_kenny/PNG/Players/bunny2_jump.png",
+            "./assets/jumperpack_kenny/PNG/Players/bunny2_jump.png"
+        ]
+    }];
 const PLAYERS_COLOR = ["#000eff", "#c00000"];
 const PLAYERS_ID = [0, 1];
 const PLAYERS_COLOR_LENGTH = PLAYERS_COLOR.length;
@@ -10,8 +45,8 @@ function GameManager() {
     const player1Id = PLAYERS_ID[0];
     const player2Id = PLAYERS_ID[1];
     const objects = [
-        Square(400, 200, PLAYERS_EVENT[player1Id], player1Id),
-        Square(450, 50, PLAYERS_EVENT[player2Id], player2Id)
+        Square(400, 200, PLAYERS_EVENT[player1Id], player1Id, PLAYERS_ASSETS[player1Id]),
+        Square(450, 50, PLAYERS_EVENT[player2Id], player2Id, PLAYERS_ASSETS[player2Id])
     ];
     const squaresLabels = objects.map(x => x.label)
     Controler(PLAYERS_EVENT)
