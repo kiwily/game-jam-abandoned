@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "type": "module",
   "description": "1er game jam en Irlande",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "nodemon index.js",
     "server": "npx http-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,6 +23,7 @@
     "cors": "^2.8.5",
     "io": "^1.0.3",
     "nodemon": "^2.0.7",
-    "server": "^1.0.32"
+    "server": "^1.0.32",
+    "socket.io": "^4.0.1"
   }
 }

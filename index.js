@@ -1,12 +1,6 @@
-// import express from 'express';
-// import http from 'http';
-// import socketIO from 'socket.io';
-// import "server";
-// import "io";
-
 import express from "express";
 import http from "http";
-// import cors from "cors";
+import { Server } from "socket.io";
 
 // get __dirname
 import path from 'path';
@@ -18,11 +12,15 @@ const port = 3000;
 
 const app = express();
 const server = http.createServer(app);
+const io = new Server(server);
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', function (req, res) {
-    // res.setHeader('Content-Type', 'application/javascript');
     res.sendFile('index.html', {root: __dirname});
+});
+
+app.get('/message/', function (req, res) {
+    res.sendFile('message.html', {root: __dirname});
 });
 
 // catch 404 and forward to error handler
@@ -41,34 +39,17 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+io.on("connection", (socket) => {
+  console.log("a user connected");
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
+  });
+  socket.on("chat message", (msg) => {
+    console.log("message: " + msg);
+    socket.broadcast.emit("chat message", msg)
+  });
+});
+
 server.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
-})
-
-// const server = http.Server(app);
-//
-// server.listen(8080, () => {
-//     console.log("server running on port 8080")
-// });
-
-// const io = socketIO(server, {
-//     handlePreflightRequest: (req, res) => {
-//         const headers = {
-//             "Access-Control-Allow-Origin": req.headers.origin
-//         }
-//         res.writeHead(200, headers);
-//         res.end();
-//     },
-//     cors: {
-//         origin: "*"
-//     }
-// });
-
-// io.on('connection', function (socket) {
-//   socket.emit('greeting-from-server', {
-//       greeting: 'Hello Client'
-//   });
-//   socket.on('greeting-from-client', function (message) {
-//     console.log(message);
-//   });
-// });
+});
