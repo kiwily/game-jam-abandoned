@@ -17,7 +17,6 @@ function Square(x_init, y_init, playerEvent, playerId) {
             }
        }
     });
-    console.log(body.label, playerEvent)
     Body.setMass(body, 15);
     Body.setInertia(body, Infinity);
     // Update movement
@@ -132,6 +131,7 @@ function Square(x_init, y_init, playerEvent, playerId) {
             body.render.sprite.yScale = SCALE;
             xForce = -0.018;
         }
+        console.log("client move", isMoving)
         Body.applyForce(body, body.position, {x: xForce, y: yForce});
     });
     return body;

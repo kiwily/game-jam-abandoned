@@ -15,7 +15,6 @@ function HostControler() {
         if (data === null) {
           return;
         };
-
         window.dispatchEvent(new CustomEvent(PLAYERS_ID_TO_EVENT[playerId], {
             bubbles: true,
             detail:{
@@ -36,6 +35,6 @@ function HostControler() {
     }, false);
 
     socket.on("host client keyboard", (e) => {
-      handleKey(e.playerId, e.keyCode, e.keyDown)
+      handleKey(e.playerId, e.keyCode, e.triggered)
     });
 };

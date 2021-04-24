@@ -16,19 +16,19 @@ window.addEventListener('keydown', function (e) {
     if (keyCode){
         socket.emit("client keyboard", {
             playerId: PLAYER_ID,
-            keyDown: true,
+            triggered: true,
             keyCode
         });
     }
 }, false);
 
 // Dispatch key released
-window.addEventListener('keydown', function (e) {
+window.addEventListener('keyup', function (e) {
     const keyCode = e?.keyCode || null;
     if (keyCode){
         socket.emit("client keyboard", {
             playerId: PLAYER_ID,
-            keyDown: false,
+            triggered: false,
             keyCode
         });
     }

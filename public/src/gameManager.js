@@ -7,11 +7,13 @@ let PLAYERS_COLOR_LENGTH = PLAYERS_COLOR.length;
 
 
 function addPlayer(playerId) {
-    console.log(PLAYERS_ID_TO_EVENT, playerId, PLAYERS_ID_TO_EVENT[playerId]);
-    console.log(Object.keys(PLAYERS_ID_TO_EVENT), playerId, Object.keys(PLAYERS_ID_TO_EVENT)[0] === playerId);
-  const player = Square(400, 200, PLAYERS_ID_TO_EVENT[playerId], playerId);
-  PLAYERS_OBJECT[playerId] = player;
-  Composite.add(engine.world, player);
+    PLAYERS_ID.push(playerId);
+    PLAYERS_EVENT_TO_ID['key-event-' + playerId] = playerId;
+    PLAYERS_ID_TO_EVENT[playerId] = 'key-event-' + playerId;
+    PLAYERS_COLOR[playerId] = 'blue';
+    const player = Square(400, 200, PLAYERS_ID_TO_EVENT[playerId], playerId);
+    PLAYERS_OBJECT[playerId] = player;
+    Composite.add(engine.world, player);
 };
 
 function removePlayer(playerId) {
@@ -35,10 +37,6 @@ function GameManager() {
   socket.on("host connect id", (data) => {
     const newPlayerId = data.newPlayerId;
 
-    PLAYERS_EVENT_TO_ID['key-event-' + newPlayerId] = newPlayerId;
-    PLAYERS_ID_TO_EVENT[newPlayerId] = 'key-event-' + newPlayerId;
-    PLAYERS_COLOR[newPlayerId] = 'blue';
-    PLAYERS_SCORES_LOST[newPlayerId] = 0;
     addPlayer(newPlayerId);
 
     PLAYERS_COLOR_LENGTH = PLAYERS_COLOR.length;
