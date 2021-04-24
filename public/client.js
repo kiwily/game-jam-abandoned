@@ -9,6 +9,10 @@ let PLAYERS_ID;
 let PLAYERS_LOST;
 let PLAYERS_COLOR;
 
+socket.on("connect id", function(data) {
+    PLAYER_ID = data.playerId;
+});
+
 // Dispatch key pressed
 window.addEventListener('keydown', function (e) {
     const keyCode = e?.keyCode || null;
