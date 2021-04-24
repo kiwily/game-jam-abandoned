@@ -3,8 +3,6 @@
 function Bunny(x_init, y_init, playerEvent) {
     let currentAssetTime = 0;
     let color = COLOR_FROM_ID[PLAYERS_EVENT_TO_ID[playerEvent]];
-    console.log(COLOR_FROM_ID, PLAYERS_EVENT_TO_ID, playerEvent, color)
-    console.log(PLAYERS_ASSETS, PLAYERS_ASSETS[color])
     // Map for fluid movements
     let isMoving = Object.create(DEFAULT_MOVING)
     // Instantiating the rectangle with its color
@@ -131,7 +129,6 @@ function Bunny(x_init, y_init, playerEvent) {
             body.render.sprite.yScale = SCALE;
             xForce = -0.018;
         }
-        // console.log("client move", isMoving)
         Body.applyForce(body, body.position, {x: xForce, y: yForce});
     });
     return body;
