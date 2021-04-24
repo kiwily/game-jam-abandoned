@@ -2,10 +2,6 @@ const btnPlay = document.querySelector("#btn-play");
 const btnPause = document.querySelector("#btn-pause");
 const ulScore = document.querySelector("#ul-score");
 
-PLAYERS_ID.forEach((item, i) => {
-  PLAYERS_LOST[item] = 0;
-});
-
 
 function renderUlScore() {
   while (ulScore.firstChild) {
@@ -57,10 +53,11 @@ btnPause.addEventListener("click", (event) => {
 // Update Score
 document.addEventListener("lost", (event) => {
   const player = event?.detail?.player;
+  console.log("Dead", player);
   if (player === undefined) {
     console.error("[LOST EVENT] No player found");
     return;
   };
-  PLAYERS_LOST[player] += 1;
+  PLAYERS_SCORES_LOST[player] += 1;
   renderUlScore();
 })

@@ -1,9 +1,11 @@
 const PLAYERS_ID = [];
 const PLAYERS_EVENT_TO_ID = {};
 const PLAYERS_ID_TO_EVENT = {};
+const PLAYERS_SCORES_LOST = {};
 const PLAYERS_COLOR = {};
 const PLAYERS_OBJECT = {}
 let PLAYERS_COLOR_LENGTH = PLAYERS_COLOR.length;
+
 
 function addPlayer(playerId) {
     console.log(PLAYERS_ID_TO_EVENT, playerId, PLAYERS_ID_TO_EVENT[playerId]);
@@ -38,6 +40,7 @@ function GameManager() {
     PLAYERS_EVENT_TO_ID['key-event-' + newPlayerId] = newPlayerId;
     PLAYERS_ID_TO_EVENT[newPlayerId] = 'key-event-' + newPlayerId;
     PLAYERS_COLOR[newPlayerId] = 'blue';
+    PLAYERS_SCORES_LOST[newPlayerId] = 0;
     addPlayer(newPlayerId);
 
     PLAYERS_COLOR_LENGTH = PLAYERS_COLOR.length;
@@ -48,9 +51,10 @@ function GameManager() {
     removePlayer(oldPlayerId);
 
     delete PLAYERS_ID.oldPlayerId;
-    delete PLAYERS_EVENT_TO_ID['key-event-' + PLAYER_ID];
-    delete PLAYERS_ID_TO_EVENT[PLAYER_ID];
+    delete PLAYERS_EVENT_TO_ID['key-event-' + newPlayerId];
+    delete PLAYERS_ID_TO_EVENT[newPlayerId];
     delete PLAYERS_COLOR[oldPlayerId];
+    delete PLAYERS_SCORES_LOST[oldPlayerId];
 
     PLAYERS_COLOR_LENGTH = PLAYERS_COLOR.length;
   });
@@ -105,7 +109,7 @@ function GameManager() {
   function updateServer(timestamp) {
     socket.emit("host update", {
       players_id: PLAYERS_ID,
-      players_lost: PLAYERS_LOST,
+      players_lost: PLAYERS_SCORES_LOST,
       players_color: PLAYERS_COLOR,
       objects: Composite.allBodies(engine.world).map((item, i) => (
         {
