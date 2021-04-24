@@ -16,10 +16,10 @@ const keyDic = {
         "player": 1,
         "direction": "DOWN"
     },
-    81: {
-        "player": 1,
-        "direction": "SWITCH"
-    },
+    // 81: {
+    //     "player": 1,
+    //     "direction": "SWITCH"
+    // },
     38: {
         "player": 2,
         "direction": "UP"
@@ -36,10 +36,10 @@ const keyDic = {
         "player": 2,
         "direction": "DOWN"
     },
-    190: {
-        "player": 2,
-        "direction": "SWITCH"
-    }
+    // 190: {
+    //     "player": 2,
+    //     "direction": "SWITCH"
+    // }
 }
 const Controler = (player1Event, player2Event) => {
 
@@ -51,7 +51,6 @@ const Controler = (player1Event, player2Event) => {
         // console.log(player, direction)
 
         if (direction === "SWITCH") {
-            console.log("direction SWITCH")
             window.dispatchEvent(new Event("SWITCH"))
         } else {
             if (player === 1) {

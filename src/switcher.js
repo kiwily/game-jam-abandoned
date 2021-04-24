@@ -17,15 +17,14 @@ function Switcher(players) {
     function reposition() {
         const x = 50 + Math.floor(Math.random() * (WIDTH - 100))
         const y = 50 + Math.floor(Math.random() * (HEIGHT - 100))
-        console.log("SWITCH", x, y)
-        body.position.x = x;
-        body.position.y = y;
+        Body.setPosition(body, {x, y});
     }
 
     // Check collisions to create a switch
     Events.on(engine, 'collisionStart', function(event) {
         var aElm = event.pairs[0].bodyA.label;
         var bElm = event.pairs[0].bodyB.label;
+        console.log("collision", aElm,bElm)
         if ((aElm === body.label && players.includes(bElm)) || (players.includes(aElm) && bElm === body.label)){
             window.dispatchEvent(new Event("SWITCH"))
             reposition()

@@ -34,11 +34,6 @@ function Square(x_init, y_init, playerEvent, color) {
         if (colorId >= color.length){
             colorId = 0;
         };
-
-        Body.setVelocity(body, {
-          x: 0,
-          y: 0,
-        });
         body.render.fillStyle = color[colorId];
         isMoving = {
             "UP": false,
