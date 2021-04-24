@@ -1,24 +1,4 @@
-// ASSET SIZE
-const TERRAIN_ASSETS = {
-   "../assets/jumperpack_kenney/PNG/Environment/ground_grass_small.png": {w: 201, h: 100},
-   "../assets/jumperpack_kenney/PNG/Environment/ground_grass.png": {w: 380, h: 94},
-   "../assets/jumperpack_kenney/PNG/Environment/ground_grass_small_broken.png": {w: 200, h: 100},
-   "../assets/jumperpack_kenney/PNG/Environment/ground_grass_broken.png": {w: 380, h: 94},
-};
-const KEY_TERRAIN_ASSETS = Object.keys(TERRAIN_ASSETS);
 
-// src/terrain.js
-
-const MAXIMUM_STACK = 7;
-const INV_MAXIMUM_STACK = 1 / MAXIMUM_STACK;
-const NUMBER_OF_COLUMN = 2;
-
-const RATIO = .5;
-
-const LOWER_BOUND = 1 * HEIGHT;
-const HIGHER_BOUND = 0.1 * HEIGHT;
-
-const SCROLL_SPEED = 1;
 
 function Terrain() {
   const pulsations = [];

@@ -1,14 +1,4 @@
-const SCALE = 0.18;
-const DEFAULT_MOVING = {
-    "UP": false,
-    "DOWN": false,
-    "RIGHT": false,
-    "LEFT": false,
-    "JUMPABLE": true,
-    "EXPLOSION": false,
-    "EXPLOSION_X": 0,
-    "EXPLOSION_Y": 0
-};
+
 
 function Square(x_init, y_init, playerEvent, _colorId) {
     let colorId = _colorId;

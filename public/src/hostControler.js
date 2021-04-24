@@ -1,18 +1,4 @@
 
-const keyDic = {
-    38: {
-        "direction": "UP"
-    },
-    37: {
-        "direction": "LEFT"
-    },
-    39: {
-        "direction": "RIGHT"
-    },
-    40: {
-        "direction": "DOWN"
-    }
-}
 function HostControler() {
     // Switch commands during a switch event
     window.addEventListener('switch', function (e) {
@@ -25,7 +11,7 @@ function HostControler() {
 
     // Function to fire the right player's movement
     function handleKey(playerId, keyCode, triggered){
-        const direction = keyDic[keyCode] || null;
+        const direction = KEY_DICT[keyCode] || null;
 
         if (direction === null) {
           return;

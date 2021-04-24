@@ -5,10 +5,6 @@ let PLAYER_ID = null;
 socket.on("connect id", (data) => {
   PLAYER_ID = data.playerId;
 });
-
-const WIDTH = 800;
-const HEIGHT = 800;
-
 // module aliases
 const Engine = Matter.Engine,
     Render = Matter.Render,
