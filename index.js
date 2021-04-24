@@ -19,25 +19,42 @@ let HOST = null;
 const USER_POOL = [];
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use((req, res, next) => {
+  req.isHost = false;
+  if (HOST === null) {
+    req.isHost = true;
+  };
+  next();
+})
 app.get('/', function (req, res) {
-    if (HOST === null) {
-      res.redirect('/host');
+  console.log("hasRoot: ", req.hasRoot)
+    if (req.isHost) {
+      res.redirect("/host");
     } else {
-      res.redirect('/client');
-    }
+      res.redirect("/client");
+    };
 });
 
 app.get('/host', function (req, res) {
-    res.sendFile('host.html', {root: __dirname});
+  if (req.isHost) {
+    res.sendFile("host.html", {root: __dirname});
+  } else {
+    res.redirect("/client");
+  };
 });
 
 app.get('/client', function (req, res) {
-    res.sendFile('client.html', {root: __dirname});
+  if (req.isHost) {
+    res.redirect("/host");
+  } else {
+    res.sendFile("client.html", {root: __dirname});
+  };
 });
 
-app.get('/message', function (req, res) {
-    res.sendFile('message.html', {root: __dirname});
-});
+// app.get('/message', function (req, res) {
+//     res.sendFile('message.html', {root: __dirname});
+// });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -67,10 +84,10 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     console.log("user disconnected", socket.id);
-  });
-  socket.on("chat message", (msg) => {
-    console.log("message: " + msg);
-    socket.broadcast.emit("chat message", msg)
+    if (HOST === socket.id) {
+      HOST = null;
+      socket.broadcast.emit("no-host")
+    };
   });
 });
 
