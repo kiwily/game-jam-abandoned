@@ -24,7 +24,6 @@ function Square(x_init, y_init, playerEvent, cId) {
        }
     });
     Body.setMass(body, 15);
-
     // Update movement
     function move(to, triggered) {
         isMoving[to] = triggered;
@@ -68,7 +67,15 @@ function Square(x_init, y_init, playerEvent, cId) {
                     player: colorId,
                 }
             }));
-            Body.setPosition(body, {x: body.position.x, y: -40});
+            Body.setPosition(body, {x: WIDTH / 2, y: 40});
+            Body.setVelocity(body, {
+              x: 0,
+              y: 0,
+            });
+            Body.applyForce(body, body.position, {
+              x: 0,
+              y: -0.2,
+            });
         }
         // Periodic update for fluid movements
         let xForce = 0;

@@ -4,9 +4,9 @@ const TERRAIN_ASSETS = {
    "../assets/jumperpack_kenney/PNG/Environment/ground_grass.png": {w: 380, h: 94},
    "../assets/jumperpack_kenney/PNG/Environment/ground_grass_small_broken.png": {w: 200, h: 100},
    "../assets/jumperpack_kenney/PNG/Environment/ground_grass_broken.png": {w: 380, h: 94},
-}
-
+};
 const KEY_TERRAIN_ASSETS = Object.keys(TERRAIN_ASSETS);
+
 // src/terrain.js
 
 const MAXIMUM_STACK = 7;
@@ -18,11 +18,12 @@ const RATIO = .5;
 const LOWER_BOUND = 1 * HEIGHT;
 const HIGHER_BOUND = 0.1 * HEIGHT;
 
-const SCROLL = 1;
+const SCROLL_SPEED = 1;
 
 function Terrain() {
   const pulsations = [];
 
+  // Add platforms
   const platforms = Composites.stack(0, HIGHER_BOUND, 1, MAXIMUM_STACK, 0, 0, (xr, yr, columnr, rowr) => {
     const x = (0.5 * (rowr % 2) + 0.5 * (0.2 + 0.6 * Math.random())) * WIDTH;
     const y = HIGHER_BOUND + (LOWER_BOUND - HIGHER_BOUND) * (rowr * INV_MAXIMUM_STACK);
@@ -90,7 +91,7 @@ function Terrain() {
   //     // animate stairs
   //     Body.translate(platform, {
   //       x: 0,
-  //       y: SCROLL * engine.timing.timeScale
+  //       y: SCROLL_SPEED * engine.timing.timeScale
   //     });
   //
   //     // loop stairs when they go off screen
