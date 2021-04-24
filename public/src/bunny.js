@@ -28,7 +28,8 @@ function Bunny(x_init, y_init, playerEvent) {
     let isMoving = Object.create(DEFAULT_MOVING)
     // Instantiating the rectangle with its color
     const body = Bodies.rectangle(x_init, y_init, 20, 20, {
-        frictionAir: 0.03,
+        frictionAir: AIR_FRICTION,
+        friction: GROUND_FRICTION,
         label: playerEvent,
         render: {
             lineWidth: 3,
@@ -39,7 +40,7 @@ function Bunny(x_init, y_init, playerEvent) {
             }
        }
     });
-    Body.setMass(body, 15);
+    Body.setMass(body, WEIGHT);
     Body.setInertia(body, Infinity);
     // Update movement
     function move(to, triggered) {
@@ -121,7 +122,7 @@ function Bunny(x_init, y_init, playerEvent) {
                 body.render.sprite.xScale = SCALE;
                 body.render.sprite.yScale = SCALE;
                 // Jump
-                yForce = -0.4;
+                yForce = -JUMP_FORCE;
                 isMoving["JUMPABLE"] = false;
             }
         }
@@ -135,13 +136,13 @@ function Bunny(x_init, y_init, playerEvent) {
             body.render.sprite.texture = PLAYERS_ASSETS[color].walkRight[t];
             body.render.sprite.xScale = SCALE;
             body.render.sprite.yScale = SCALE;
-            xForce = 0.018;
+            xForce = RUN_FORCE;
         }
         if (isMoving["LEFT"]){
             body.render.sprite.texture = PLAYERS_ASSETS[color].walkLeft[t];
             body.render.sprite.xScale = -SCALE;
             body.render.sprite.yScale = SCALE;
-            xForce = -0.018;
+            xForce = -RUN_FORCE;
         }
         Body.applyForce(body, body.position, {x: xForce, y: yForce});
     });

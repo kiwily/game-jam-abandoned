@@ -215,3 +215,9 @@ const LOWER_BOUND = 1 * HEIGHT;
 const HIGHER_BOUND = 0.1 * HEIGHT;
 
 const SCROLL_SPEED = 1;
+
+const RUN_FORCE = 0.08;
+const JUMP_FORCE = 3.45;
+const WEIGHT = 100;
+const AIR_FRICTION = 0.03;
+const GROUND_FRICTION = 0.0035;
