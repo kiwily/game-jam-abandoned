@@ -19,43 +19,40 @@ function renderUlScore() {
   });
 }
 
-// Initialise scores
-renderUlScore();
-
-// Start game
-Runner.run(runner, engine);
-let IS_PLAYING = true;
-
-// Play game
-btnPlay.addEventListener("click", (event) => {
-  if (IS_PLAYING) {
-    return;
-  };
-  Runner.run(runner, engine);
-  IS_PLAYING = true;
-
-  btnPlay.disabled = true;
-  btnPause.disabled = false;
-});
-
-// Pause game
-btnPause.addEventListener("click", (event) => {
-  if (!IS_PLAYING) {
-    return;
-  };
-  Runner.stop(runner);
-  IS_PLAYING = false;
-
-  btnPlay.disabled = false;
-  btnPause.disabled = true;
-});
-
-// Update Score
-document.addEventListener("lost", (event) => {
-  const player = event?.detail?.player;
-  if (player === undefined) {
-    console.error("[LOST EVENT] No player found");
-    return;
-  };
-  PLAYERS_SCORES_LOST[player] += 1;
-})
+// // Start game
+// Runner.run(runner, engine);
+// let IS_PLAYING = true;
+//
+// // Play game
+// btnPlay.addEventListener("click", (event) => {
+//   if (IS_PLAYING) {
+//     return;
+//   };
+//   Runner.run(runner, engine);
+//   IS_PLAYING = true;
+//
+//   btnPlay.disabled = true;
+//   btnPause.disabled = false;
+// });
+//
+// // Pause game
+// btnPause.addEventListener("click", (event) => {
+//   if (!IS_PLAYING) {
+//     return;
+//   };
+//   Runner.stop(runner);
+//   IS_PLAYING = false;
+//
+//   btnPlay.disabled = false;
+//   btnPause.disabled = true;
+// });
+//
+// // Update Score
+// document.addEventListener("lost", (event) => {
+//   const player = event?.detail?.player;
+//   if (player === undefined) {
+//     console.error("[LOST EVENT] No player found");
+//     return;
+//   };
+//   PLAYERS_SCORES_LOST[player] += 1;
+// })

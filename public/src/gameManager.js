@@ -116,12 +116,7 @@ function GameManager() {
 
   // Send aggregate screenshot to server
   function updateServer(timestamp) {
-    try {
-      renderUlScore();
-    } catch (err) {
-      console.error("Function not defined for now");
-    };
-
+    renderUlScore();
     socket.emit("host update", {
         colorFromId: COLOR_FROM_ID,
         playersScoresLost: PLAYERS_SCORES_LOST,
@@ -151,4 +146,4 @@ Render.run(render);
 var runner = Runner.create();
 
 // run the engine - Need to click on play
-// Runner.run(runner, engine);
+Runner.run(runner, engine);
