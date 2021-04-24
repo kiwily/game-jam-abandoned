@@ -1,26 +1,29 @@
 
-
+const DEFAULT_MOVING = {
+    "UP": false,
+    "DOWN": false,
+    "RIGHT": false,
+    "LEFT": false,
+    "JUMPABLE": true,
+    "EXPLOSION": false,
+    "EXPLOSION_X": 0,
+    "EXPLOSION_Y": 0
+};
 
 function Square(x_init, y_init, playerEvent, cId) {
     let colorId = cId;
     // Map for fluid movements
-    let isMoving = {
-        "UP": false,
-        "DOWN": false,
-        "RIGHT": false,
-        "LEFT": false,
-    };
+    let isMoving = Object.create(DEFAULT_MOVING);
     // Instantiating the rectangle with its color
     const body = Bodies.rectangle(x_init, y_init, 20, 20, {
         friction: 0.3,
         label: playerEvent,
         render: {
             fillStyle: PLAYERS_COLOR[colorId],
-            lineWidth: 3
+            lineWidth: 3,
        }
     });
     Body.setMass(body, 15);
-    let jumpable = false;
 
     // Update movement
     function move(to, triggered) {
@@ -46,24 +49,7 @@ function Square(x_init, y_init, playerEvent, cId) {
             colorId = 0;
         };
         body.render.fillStyle = PLAYERS_COLOR[colorId];
-        isMoving = {
-            "UP": false,
-            "DOWN": false,
-            "RIGHT": false,
-            "LEFT": false,
-            "EXPLOSION": false,
-            "EXPLOSION_X": 0,
-            "EXPLOSION_Y": 0
-        }
-    });
-
-    // Check collisions to allow a new jump
-    Events.on(engine, 'collisionStart', function(event) {
-        var aElm = event.pairs[0].bodyA.label;
-        var bElm = event.pairs[0].bodyB.label;
-        if (aElm === body.label || bElm === body.label){
-            jumpable = true;
-        }
+        isMoving = Object.create(DEFAULT_MOVING);
     });
 
     Events.on(engine, 'beforeUpdate', function(event) {
@@ -88,9 +74,9 @@ function Square(x_init, y_init, playerEvent, cId) {
         let xForce = 0;
         let yForce = 0;
         if (isMoving["UP"]){
-            if (jumpable){
+            if (isMoving["JUMPABLE"]){
                 yForce = -0.4;
-                jumpable = false;
+                isMoving["JUMPABLE"] = false;
             }
         }
         if (isMoving["DOWN"]){

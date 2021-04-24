@@ -43,6 +43,22 @@ function GameManager() {
                     yForce: 0.03* (elem2.position.y-elem1.position.y)
                 }
             }));
+        } else if (PLAYERS_EVENT.includes(elem1.label)){
+            window.dispatchEvent(new CustomEvent(elem1.label, { 
+                bubbles: true,
+                detail:{
+                    direction: "JUMPABLE",
+                    triggered: true
+                } 
+            }));
+        } else if (PLAYERS_EVENT.includes(elem2.label)){
+            window.dispatchEvent(new CustomEvent(elem2.label, { 
+                bubbles: true,
+                detail:{
+                    direction: "JUMPABLE",
+                    triggered: true
+                } 
+            }));
         }
     });
 

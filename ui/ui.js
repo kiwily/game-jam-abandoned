@@ -62,7 +62,6 @@ document.addEventListener("lost", (event) => {
     console.error("[LOST EVENT] No player found");
     return;
   };
-  console.log("[LOST EVENT]", player);
   PLAYERS_LOST[player] += 1;
   renderUlScore();
 })
