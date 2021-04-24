@@ -1,5 +1,5 @@
 const WIDTH = 800;
-const HEIGHT = 700;
+const HEIGHT = 200;
 
 // module aliases
 const Engine = Matter.Engine,
@@ -18,7 +18,7 @@ const engine = Engine.create();
 
 // create a renderer
 const render = Render.create({
-    element: document.body,
+    element: document.querySelector("#game"),
     engine: engine,
     options: {
       width: WIDTH,

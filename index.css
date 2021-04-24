@@ -54,9 +54,6 @@ input[type="text"] {
   border-radius: 0;
 }
 body {
-  width: 100%;
-  max-width: 68rem;
-  margin: 0 auto;
   font: 1.6rem/1.25 Arial, sans-serif;
   background-color: #f5f5f5;
   color: #4d4d4d;
@@ -69,7 +66,15 @@ body {
 }
 /*END RESETS*/
 /* GLOBAL STYLES */
-canvas {
+div#game {
+  width: 100%;
+  max-width: 68rem;
+  margin: 0 auto;
+
+  margin-top: 10rem;
+}
+
+div#game canvas {
   border: medium solid black;
 }
 
@@ -79,4 +84,17 @@ body {
 
 button[disabled] {
   color: grey;
+}
+
+div#ui {
+  float: right;
+  margin-right: 10rem;
+
+  padding: 2rem;
+
+  border: medium solid black;
+}
+
+div#ui h1:first-child {
+  margin-top: 0;
 }

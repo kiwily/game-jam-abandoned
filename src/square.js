@@ -51,12 +51,12 @@ function Square(x_init, y_init, playerEvent, cId) {
         if (aElm === body.label || bElm === body.label){
             jumpable = true;
         }
-        if (aElm === body.label || bElm === body.label){
-            Body.applyForce(body, body.position, {
-                x: (forceMagnitude + Common.random() * forceMagnitude) * Common.choose([1, -1]), 
-                y: -forceMagnitude + Common.random() * -forceMagnitude
-            });
-        }
+        // if (aElm === body.label || bElm === body.label){
+        //     Body.applyForce(body, body.position, {
+        //         x: (forceMagnitude + Common.random() * forceMagnitude) * Common.choose([1, -1]),
+        //         y: -forceMagnitude + Common.random() * -forceMagnitude
+        //     });
+        // }
     });
 
     Events.on(engine, 'beforeUpdate', function(event) {
@@ -69,7 +69,7 @@ function Square(x_init, y_init, playerEvent, cId) {
         }
         // Sortie en bas
         if (body.position.y > HEIGHT + 40){
-            window.dispatchEvent(new CustomEvent("lost", { 
+            document.dispatchEvent(new CustomEvent("lost", {
                 bubbles: true,
                 detail:{
                     player: colorId,
