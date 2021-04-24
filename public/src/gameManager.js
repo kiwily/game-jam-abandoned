@@ -1,27 +1,21 @@
-const PLAYERS_ID = [PLAYER_ID];
+const PLAYERS_ID = [];
 const PLAYERS_EVENT = {};
-PLAYERS_EVENT['key-event-' + PLAYER_ID] = PLAYER_ID
-const PLAYERS_COLOR = {PLAYER_ID:'blue'};
+const PLAYERS_COLOR = {};
 const PLAYERS_OBJECT = {}
 let PLAYERS_COLOR_LENGTH = PLAYERS_COLOR.length;
 
+function addPlayer(playerId) {
+  const player = Square(400, 200, PLAYERS_EVENT[playerId], playerId);
+  PLAYERS_OBJECT[playerId] = player;
+  Composite.add(engine.world, player);
+};
 
+function removePlayer(playerId) {
+  Composite.remove(engine.world, PLAYERS_OBJECT[playerId]);
+};
 
 function GameManager() {
-  function addPlayer(playerId) {
-    const player = Square(400, 200, PLAYERS_EVENT[playerId], playerId);
-    PLAYERS_OBJECT[playerId] = player;
-    Composite.add(engine.world, player);
-  };
-
-  function removePlayer(playerId) {
-    Composite.remove(engine.world, PLAYERS_OBJECT[playerId]);
-  };
-
-
   Composite.add(engine.world, Terrain());
-
-  addPlayer(PLAYER_ID);
 
   HostControler();
 
