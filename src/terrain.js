@@ -1,12 +1,12 @@
 // src/terrain.js
 
-const MAXIMUM_STACK = 32
+const MAXIMUM_STACK = 15
 const INV_MAXIMUM_STACK = 1 / MAXIMUM_STACK
 const NUMBER_OF_COLUMN = 2
 
 const PLATFORM_HEIGHT = 4;
 
-const LOWER_BOUND = 1 * HEIGHT + PLATFORM_HEIGHT * 2;
+const LOWER_BOUND = 1 * HEIGHT;
 const HIGHER_BOUND = 0.1 * HEIGHT;
 
 const SCROLL = 1;
