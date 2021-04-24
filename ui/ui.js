@@ -29,7 +29,7 @@ btnPause.addEventListener("click", (event) => {
 });
 
 document.addEventListener("lost", (event) => {
-  const player = event?.detail.?player;
+  const player = event?.detail?.player;
   if (!player) {
     console.error("[LOST EVENT] No player found")
     return;
