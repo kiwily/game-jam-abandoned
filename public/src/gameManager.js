@@ -65,7 +65,7 @@ function GameManager() {
     // add all of the bodies to the world
     Composite.add(engine.world, objects);
 
-    // 
+    //
     Events.on(engine, 'collisionStart', function(event) {
         var elem1 = event.pairs[0].bodyA;
         var elem2 = event.pairs[0].bodyB;
@@ -73,15 +73,15 @@ function GameManager() {
             const num = Math.floor(Math.random() * 7 + 1)
             const audioExplosion = new Audio('./assets/sounds/meow/00' + String(num) + '_meow.wav');
             audioExplosion.play()
-            window.dispatchEvent(new CustomEvent("explosion", { 
+            window.dispatchEvent(new CustomEvent("explosion", {
                 bubbles: true,
                 detail:{
                     label: elem1.label,
                     xForce: -EXPLOSION_STRENGTH* (elem2.position.x-elem1.position.x),
                     yForce: -EXPLOSION_STRENGTH* (elem2.position.y-elem1.position.y)
-                } 
+                }
             }));
-            window.dispatchEvent(new CustomEvent("explosion", { 
+            window.dispatchEvent(new CustomEvent("explosion", {
                 bubbles: true,
                 detail:{
                     label: elem2.label,
@@ -90,25 +90,44 @@ function GameManager() {
                 }
             }));
         } else if (PLAYERS_EVENT.includes(elem1.label)){
-            window.dispatchEvent(new CustomEvent(elem1.label, { 
+            window.dispatchEvent(new CustomEvent(elem1.label, {
                 bubbles: true,
                 detail:{
                     direction: "JUMPABLE",
                     triggered: true
-                } 
+                }
             }));
         } else if (PLAYERS_EVENT.includes(elem2.label)){
-            window.dispatchEvent(new CustomEvent(elem2.label, { 
+            window.dispatchEvent(new CustomEvent(elem2.label, {
                 bubbles: true,
                 detail:{
                     direction: "JUMPABLE",
                     triggered: true
-                } 
+                }
             }));
         }
     });
 
+    // Send aggregate screenshot to server
+    function updateServer(timestamp) {
+      socket.emit("host update", {
+        players_id: PLAYERS_ID,
+        players_lost: PLAYERS_LOST,
+        players_color: PLAYERS_COLOR,
+        objects: Composite.allBodies(engine.world).map((item, i) => (
+          {
+            sprite: item.render.sprite,
+            position: item.position,
+            angle: item.angle,
+          }
+        )),
+      });
+      window.requestAnimationFrame(updateServer);
+    };
+
+    window.requestAnimationFrame(updateServer);
 };
+
 
 GameManager();
 

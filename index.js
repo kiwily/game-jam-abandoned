@@ -28,7 +28,6 @@ app.use((req, res, next) => {
   next();
 })
 app.get('/', function (req, res) {
-  console.log("hasRoot: ", req.hasRoot)
     if (req.isHost) {
       res.redirect("/host");
     } else {
@@ -86,8 +85,13 @@ io.on("connection", (socket) => {
     console.log("user disconnected", socket.id);
     if (HOST === socket.id) {
       HOST = null;
-      socket.broadcast.emit("no-host")
+      socket.broadcast.emit("host quit")
     };
+  });
+
+  socket.on("host update", (data) => {
+    console.log(">>> ", data);
+    socket.broadcast.emit("client update", data);
   });
 });
 
