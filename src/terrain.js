@@ -6,7 +6,7 @@ const INV_MAXIMUM_STACK = 1 / MAXIMUM_STACK
 const LOWER_BOUND = 0.8 * HEIGHT;
 const HIGHER_BOUND = 0.2 * HEIGHT;
 
-const SPEED_UP = 0.0002;
+const SCROLL = 2;
 
 function Terrain() {
   const pulsations = [];
@@ -35,11 +35,15 @@ function Terrain() {
   });
 
   // Move platform left to right
-  Events.on(engine, 'beforeUpdate', (event) => {
+  Events.on(engine, "beforeUpdate", (event) => {
+    engine.timing.timeScale = 1;
+
     for (let i = 0; i < platforms.bodies.length; i++) {
       const platform = platforms.bodies[i];
       const pulsation = pulsations[i];
+
       const x = pulsation.offset + pulsation.amplitude * Math.sin(engine.timing.timestamp * pulsation.speed - pulsation.angle);
+
       // platform is static so must manually update velocity for friction to work
       Body.setVelocity(platform, {
         x: x - platform.position.x,
@@ -51,6 +55,34 @@ function Terrain() {
       });
     }
   });
+
+  // Move platform left to right
+  Events.on(engine, "afterUpdate", (event) => {
+    engine.timing.timeScale = 1;
+    for (var i = 0; i < platforms.bodies.length; i += 1) {
+      var platform = platforms.bodies[i];
+
+      // animate stairs
+      Body.translate(platform, {
+        x: 0,
+        y: SCROLL * engine.timing.timeScale
+      });
+
+      // loop stairs when they go off screen
+      if (platform.position.y > LOWER_BOUND) {
+        Body.setPosition(platform, {
+          x: platform.position.x,
+          y: HIGHER_BOUND,
+        });
+
+        Body.setVelocity(platform, {
+          x: 0,
+          y: 0,
+        });
+      }
+    }
+  });
+
 
   return (
     [
