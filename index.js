@@ -90,8 +90,8 @@ io.on("connection", (socket) => {
   });
 
   socket.on("host update", (data) => {
-    console.log(">>> ", data);
-    socket.broadcast.emit("client update", data);
+    //console.log(">>> ", data);
+    io.emit("client update", data);
   });
 });
 

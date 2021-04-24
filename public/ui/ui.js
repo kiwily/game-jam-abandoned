@@ -2,7 +2,6 @@ const btnPlay = document.querySelector("#btn-play");
 const btnPause = document.querySelector("#btn-pause");
 const ulScore = document.querySelector("#ul-score");
 
-const PLAYERS_LOST = {};
 PLAYERS_ID.forEach((item, i) => {
   PLAYERS_LOST[item] = 0;
 });

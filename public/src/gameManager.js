@@ -1,5 +1,6 @@
 const EXPLOSION_STRENGTH = 0.03;
 const PLAYERS_EVENT = ["PLAYER_1_EVENT", "PLAYER_2_EVENT"];
+const PLAYERS_LOST = {};
 const PLAYERS_ASSETS = [{
         stand: [
             "./assets/jumperpack_kenney/PNG/Players/bunny1_stand.png",
@@ -116,6 +117,7 @@ function GameManager() {
         players_color: PLAYERS_COLOR,
         objects: Composite.allBodies(engine.world).map((item, i) => (
           {
+            id: item.id,
             sprite: item.render.sprite,
             position: item.position,
             angle: item.angle,
