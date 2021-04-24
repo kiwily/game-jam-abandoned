@@ -9,8 +9,8 @@ function Switcher(players) {
         render: {
             sprite: {
                 texture: "./assets/jumperpack_kenney/PNG/Items/carrot.png",
-                xScale: 0.18,
-                yScale: 0.18
+                xScale: 0.34,
+                yScale: 0.34
             }
        }
     });
@@ -20,6 +20,7 @@ function Switcher(players) {
     function reposition() {
         const x = 50 + Math.floor(Math.random() * (WIDTH - 100))
         const y = 50 + Math.floor(Math.random() * (HEIGHT - 100))
+        body.angle = 0;
         Body.setPosition(body, {x, y});
     }
 
@@ -37,6 +38,10 @@ function Switcher(players) {
             // Replace the switcher
             reposition()
         }
+    });
+
+    Events.on(engine, 'beforeUpdate', function(event) {
+        Body.rotate(body, 0.01);
     });
 
     return body;
