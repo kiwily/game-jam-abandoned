@@ -7,18 +7,18 @@ let assets = {};
 let PLAYERS_ID;
 let PLAYERS_LOST;
 let PLAYERS_COLOR;
- 
+
 function renderUlScore() {
     while (ulScore.firstChild) {
       ulScore.removeChild(ulScore.firstChild);
     };
-  
+
     PLAYERS_ID.forEach((item, i) => {
       const liItem = document.createElement("li");
       const content = document.createTextNode(`Player ${item}: ${PLAYERS_LOST[item]}`);
-  
+
       liItem.appendChild(content);
-  
+
       liItem.style.color = PLAYERS_COLOR[i];
       ulScore.appendChild(liItem);
     });
@@ -29,13 +29,14 @@ function renderUlScore() {
 // Initialisation for organizing objects
 socket.on("client update", function(data) {
     // Updating players
+    // console.log("client update >>>", data);
     PLAYERS_ID = data.players_id;
     PLAYERS_LOST = data.players_lost;
     PLAYERS_COLOR = data.players_color;
+    renderUlScore();
 
     assetsVerified = Object.create(assets);
     // Updating objects
-    console.log(data)
     data.objects.forEach((object, _) => {
         if (assets[object.id]){
             // Object exists, we update it
@@ -68,3 +69,8 @@ socket.on("client update", function(data) {
     });
 });
 
+// run the renderer
+Render.run(render);
+
+// create runner
+var runner = Runner.create();
