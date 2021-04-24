@@ -1,8 +1,8 @@
 
 
-function Switcher(players) {
+function Switcher() {
     // Instantiating the switcher
-    const body = Bodies.circle(400, 100, 10, {
+    const switcher = Bodies.circle(0, 0, 10, {
         label: "switcher",
         isStatic: true,
         isSensor: true,
@@ -14,35 +14,40 @@ function Switcher(players) {
             }
        }
     });
-    Body.setMass(body, 55);
 
     // Function for repositionning when switcher is consumed
-    function reposition() {
+    function setPosition() {
         const x = 50 + Math.floor(Math.random() * (WIDTH - 100))
         const y = 50 + Math.floor(Math.random() * (HEIGHT - 100))
-        body.angle = 0;
-        Body.setPosition(body, {x, y});
+        switcher.angle = 0;
+        Body.setPosition(switcher, {x, y});
     }
+
+    Body.setMass(switcher, 55);
+    setPosition();
 
     // Check collisions to create a switch
     Events.on(engine, 'collisionStart', function(event) {
-        var aElm = event.pairs[0].bodyA.label;
-        var bElm = event.pairs[0].bodyB.label;
-        if ((aElm === body.label && players.includes(bElm)) || (players.includes(aElm) && bElm === body.label)){
-            // Son
-            const num = Math.floor(Math.random() * 3 + 1)
-            const audioPower = new Audio('./assets/sounds/power_meter_full/00' + String(num) + '_power-meter-full.wav');
-            audioPower.play()
-            // Event
-            window.dispatchEvent(new Event("switch"))
-            // Replace the switcher
-            reposition()
-        }
+        // var aElm = event.pairs[0].bodyA.label;
+        // var bElm = event.pairs[0].bodyB.label;
+        // if ((aElm === switcher.label && players.includes(bElm)) || (players.includes(aElm) && bElm === switcher.label)){
+        //     // Son
+        //     const num = Math.floor(Math.random() * 3 + 1)
+        //     const audioPower = new Audio('./assets/sounds/power_meter_full/00' + String(num) + '_power-meter-full.wav');
+        //     audioPower.play()
+        //     // Event
+        //     window.dispatchEvent(new Event("switch"))
+        //     // Replace the switcher
+        //     setPosition()
+        // }
     });
 
     Events.on(engine, 'beforeUpdate', function(event) {
-        Body.rotate(body, 0.01);
+        Body.rotate(switcher, 0.01);
     });
 
-    return body;
+    return {
+      switcher: switcher,
+      listeners: []
+    };
 };
