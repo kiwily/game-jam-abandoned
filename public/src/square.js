@@ -1,10 +1,9 @@
 
 
-function Square(x_init, y_init, playerEvent, _colorId) {
-    let colorId = _colorId;
+function Square(x_init, y_init, playerEvent, playerId) {
     let currentAssetTime = 0;
     // Map for fluid movements
-    let isMoving = Object.create(DEFAULT_MOVING);
+    let isMoving = Object.create(DEFAULT_MOVING)
     // Instantiating the rectangle with its color
     const body = Bodies.rectangle(x_init, y_init, 20, 20, {
         frictionAir: 0.03,
@@ -44,10 +43,11 @@ function Square(x_init, y_init, playerEvent, _colorId) {
         //     colorId = 0;
         // };
         // body.render.sprite.texture = PLAYERS_ASSETS[colorId].hurt[0];
-        isMoving = Object.create(DEFAULT_MOVING);
+        isMoving = Object.create(DEFAULT_MOVING)
     });
 
     Events.on(engine, 'beforeUpdate', function(event) {
+        
         currentAssetTime ++;
         if (currentAssetTime >= 20){
             currentAssetTime = 0;

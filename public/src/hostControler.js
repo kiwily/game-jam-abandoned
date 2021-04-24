@@ -11,7 +11,7 @@ function HostControler() {
 
     // Function to fire the right player's movement
     function handleKey(playerId, keyCode, triggered){
-        const direction = KEY_DICT[keyCode] || null;
+        const { direction } = KEY_DICT[keyCode] || null;
 
         if (direction === null) {
           return;

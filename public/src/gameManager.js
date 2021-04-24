@@ -50,10 +50,11 @@ function GameManager() {
     PLAYERS_COLOR_LENGTH = PLAYERS_COLOR.length;
   });
 
-  // Collission
+  // Collisions
   Events.on(engine, 'collisionStart', function(event) {
     var elem1 = event.pairs[0].bodyA;
     var elem2 = event.pairs[0].bodyB;
+    // Collision between two players
     if (PLAYERS_ID.includes(elem1.label) && PLAYERS_ID.includes(elem2.label)){
       const num = Math.floor(Math.random() * 7 + 1)
       const audioExplosion = new Audio('./assets/sounds/meow/00' + String(num) + '_meow.wav');
@@ -74,6 +75,7 @@ function GameManager() {
           yForce: EXPLOSION_STRENGTH* (elem2.position.y-elem1.position.y)
         }
       }));
+      // Collision between player and anything
     } else if (PLAYERS_ID.includes(elem1.label)){
       window.dispatchEvent(new CustomEvent(elem1.label, {
         bubbles: true,
@@ -82,6 +84,7 @@ function GameManager() {
           triggered: true
         }
       }));
+      // Collision between player and anything
     } else if (PLAYERS_ID.includes(elem2.label)){
       window.dispatchEvent(new CustomEvent(elem2.label, {
         bubbles: true,

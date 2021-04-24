@@ -57,16 +57,6 @@ const KEY_DICT = {
     }
 }
 const SCALE = 0.18;
-const DEFAULT_MOVING = {
-    "UP": false,
-    "DOWN": false,
-    "RIGHT": false,
-    "LEFT": false,
-    "JUMPABLE": true,
-    "EXPLOSION": false,
-    "EXPLOSION_X": 0,
-    "EXPLOSION_Y": 0
-};
 
 // ASSET SIZE
 const TERRAIN_ASSETS = {
@@ -76,7 +66,17 @@ const TERRAIN_ASSETS = {
     "../assets/jumperpack_kenney/PNG/Environment/ground_grass_broken.png": {w: 380, h: 94},
 };
 const KEY_TERRAIN_ASSETS = Object.keys(TERRAIN_ASSETS);
-
+ 
+const DEFAULT_MOVING = {
+  "UP": false,
+  "DOWN": false,
+  "RIGHT": false,
+  "LEFT": false,
+  "JUMPABLE": true,
+  "EXPLOSION": false,
+  "EXPLOSION_X": 0,
+  "EXPLOSION_Y": 0
+};
 
 const WIDTH = 800;
 const HEIGHT = 800;
