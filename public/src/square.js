@@ -20,10 +20,9 @@ function Square(x_init, y_init, playerEvent, _colorId) {
         frictionAir: 0.03,
         label: playerEvent,
         render: {
-            fillStyle: PLAYERS_COLOR[colorId],
             lineWidth: 3,
             sprite: {
-                texture: PLAYERS_ASSETS[colorId]["stand"][0],
+                texture: PLAYERS_ASSETS[0]["stand"][0],
                 xScale: SCALE,
                 yScale: SCALE
             }
@@ -50,11 +49,11 @@ function Square(x_init, y_init, playerEvent, _colorId) {
     window.addEventListener("explosion", (e) => explose(e.detail.label, e.detail.xForce, e.detail.yForce));
 
     window.addEventListener('switch', function (e) {
-        colorId ++;
-        if (colorId >= PLAYERS_COLOR_LENGTH){
-            colorId = 0;
-        };
-        body.render.sprite.texture = PLAYERS_ASSETS[colorId].hurt[0];
+        // colorId ++;
+        // if (colorId >= PLAYERS_COLOR_LENGTH){
+        //     colorId = 0;
+        // };
+        // body.render.sprite.texture = PLAYERS_ASSETS[colorId].hurt[0];
         isMoving = Object.create(DEFAULT_MOVING);
     });
 
@@ -81,7 +80,7 @@ function Square(x_init, y_init, playerEvent, _colorId) {
             document.dispatchEvent(new CustomEvent("lost", {
                 bubbles: true,
                 detail:{
-                    player: colorId,
+                    player: 0,
                 }
             }));
             // Remise a 0 de la position
@@ -99,7 +98,7 @@ function Square(x_init, y_init, playerEvent, _colorId) {
         let xForce = 0;
         let yForce = 0;
         if (isMoving["EXPLOSION"]){
-            body.render.sprite.texture = PLAYERS_ASSETS[colorId].hurt[t];
+            body.render.sprite.texture = PLAYERS_ASSETS[0].hurt[t];
             xForce = isMoving["EXPLOSION_X"];
             yForce = isMoving["EXPLOSION_Y"];
             isMoving["EXPLOSION"] = false;
@@ -116,7 +115,7 @@ function Square(x_init, y_init, playerEvent, _colorId) {
                 }
                 audioJump.play()
                 // Sprite movement
-                body.render.sprite.texture = PLAYERS_ASSETS[colorId].jump[t];
+                body.render.sprite.texture = PLAYERS_ASSETS[0].jump[t];
                 body.render.sprite.xScale = SCALE;
                 body.render.sprite.yScale = SCALE;
                 // Jump
@@ -125,19 +124,19 @@ function Square(x_init, y_init, playerEvent, _colorId) {
             }
         }
         if (isMoving["DOWN"]){
-            body.render.sprite.texture = PLAYERS_ASSETS[colorId].jump[t];
+            body.render.sprite.texture = PLAYERS_ASSETS[0].jump[t];
             body.render.sprite.xScale = SCALE;
             body.render.sprite.yScale = SCALE;
             yForce = 0.01;
         }
         if (isMoving["RIGHT"]){
-            body.render.sprite.texture = PLAYERS_ASSETS[colorId].walkRight[t];
+            body.render.sprite.texture = PLAYERS_ASSETS[0].walkRight[t];
             body.render.sprite.xScale = SCALE;
             body.render.sprite.yScale = SCALE;
             xForce = 0.018;
         }
         if (isMoving["LEFT"]){
-            body.render.sprite.texture = PLAYERS_ASSETS[colorId].walkLeft[t];
+            body.render.sprite.texture = PLAYERS_ASSETS[0].walkLeft[t];
             body.render.sprite.xScale = -SCALE;
             body.render.sprite.yScale = SCALE;
             xForce = -0.018;

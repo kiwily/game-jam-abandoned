@@ -83,7 +83,8 @@ io.on("connection", (socket) => {
     USER_POOL[socket.id] = true;
   };
 
-  socket.emit("connect id", {playerId: socket.id})
+  socket.emit("connect id", {playerId: socket.id});
+  io.emit("host connect id", {newPlayerId: socket.id});
 
   socket.on("disconnect", () => {
     console.log("user disconnected", socket.id);
