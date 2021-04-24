@@ -4,8 +4,8 @@ function HostControler() {
     window.addEventListener('switch', function (e) {
         const playersEventCopy = Object.create(PLAYERS_EVENT);
         const shuffledPlayersEventValues = PLAYERS_EVENT.values.sort((a, b) => 0.5 - Math.random());
-        PLAYERS_EVENT.keys.forEach((key, i) => {
-          PLAYERS_EVENT.key = shuffledPlayersEventValues[i];
+        Object.keys(PLAYERS_EVENT).forEach((key, i) => {
+          PLAYERS_EVENT[key] = shuffledPlayersEventValues[i];
         });
     });
 
