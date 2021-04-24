@@ -51,8 +51,8 @@ function GameManager() {
     removePlayer(oldPlayerId);
 
     delete PLAYERS_ID.oldPlayerId;
-    delete PLAYERS_EVENT_TO_ID['key-event-' + newPlayerId];
-    delete PLAYERS_ID_TO_EVENT[newPlayerId];
+    delete PLAYERS_EVENT_TO_ID['key-event-' + oldPlayerId];
+    delete PLAYERS_ID_TO_EVENT[oldPlayerId];
     delete PLAYERS_COLOR[oldPlayerId];
     delete PLAYERS_SCORES_LOST[oldPlayerId];
 
