@@ -2,7 +2,7 @@
 
 function Switcher(players) {
     // Instantiating the switcher
-    const body = Bodies.circle(400, 100, 4, {
+    const body = Bodies.circle(400, 100, 10, {
         label: "switcher",
         isStatic: true,
         isSensor: true,
