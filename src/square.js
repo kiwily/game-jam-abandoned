@@ -53,8 +53,24 @@ function Square(x_init, y_init, playerEvent, color) {
         }
     });
 
-    // Periodic update for fluid movements
     Events.on(engine, 'beforeUpdate', function(event) {
+        // Sortie sur les bords
+        if (body.position.x < -5){
+            Body.setPosition(body, {x: WIDTH + 2, y: body.position.y});
+        }
+        if (body.position.x > WIDTH + 5){
+            Body.setPosition(body, {x: -2, y: body.position.y});
+        }
+        // Sortie en bas
+        if (body.position.y < -30){
+            window.dispatchEvent(new CustomEvent("END", { 
+                bubbles: true,
+                detail:{
+                    player: color[colorId],
+                }
+            }));
+        }
+        // Periodic update for fluid movements
         let xForce = 0;
         let yForce = 0;
         if (isMoving["UP"]){
