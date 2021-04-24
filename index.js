@@ -75,10 +75,10 @@ app.use(function(err, req, res, next) {
 });
 
 io.on("connection", (socket) => {
-  console.log("a user connected", socket.id);
+  // console.log("a user connected", socket.id);
   if (HOST === null) {
     HOST = socket.id;
-    console.log("Set Host to", socket.id);
+    // console.log("Set Host to", socket.id);
   } {
     USER_POOL[socket.id] = true;
   };
@@ -87,7 +87,7 @@ io.on("connection", (socket) => {
   io.emit("host connect id", {newPlayerId: socket.id});
 
   socket.on("disconnect", () => {
-    console.log("user disconnected", socket.id);
+    // console.log("user disconnected", socket.id);
     if (HOST === socket.id) {
       HOST = null;
       socket.broadcast.emit("host quit")
