@@ -10,7 +10,7 @@ function addPlayer(playerId) {
     PLAYERS_EVENT_TO_ID['key-event-' + playerId] = playerId;
     PLAYERS_ID_TO_EVENT[playerId] = 'key-event-' + playerId;
     PLAYERS_COLOR[playerId] = 'blue';
-    const player = Square(400, 200, PLAYERS_ID_TO_EVENT[playerId], playerId);
+    const player = Bunny(400, 200, PLAYERS_ID_TO_EVENT[playerId], playerId);
     PLAYERS_OBJECT[playerId] = player;
     Composite.add(engine.world, player);
 };
@@ -25,8 +25,8 @@ function GameManager() {
   HostControler();
 
   // Instantiate switcher
-  // const squaresLabels = objects.map(x => x.label)
-  // const switcher = Switcher(squaresLabels)
+  // const bunnyLabels = objects.map(x => x.label)
+  // const switcher = Switcher(bunnyLabels)
   // objects.push(switcher);
 
   // add all of the bodies to the world

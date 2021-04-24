@@ -1,6 +1,6 @@
 
 
-function Square(x_init, y_init, playerEvent, playerId) {
+function Bunny(x_init, y_init, playerEvent, playerId) {
     let currentAssetTime = 0;
     // Map for fluid movements
     let isMoving = Object.create(DEFAULT_MOVING)
