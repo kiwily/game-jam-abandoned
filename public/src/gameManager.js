@@ -7,7 +7,6 @@ let PLAYERS_COLOR_LENGTH = PLAYERS_COLOR.length;
 
 
 function addPlayer(playerId) {
-    PLAYERS_ID.push(playerId);
     PLAYERS_EVENT_TO_ID['key-event-' + playerId] = playerId;
     PLAYERS_ID_TO_EVENT[playerId] = 'key-event-' + playerId;
     PLAYERS_COLOR[playerId] = 'blue';
