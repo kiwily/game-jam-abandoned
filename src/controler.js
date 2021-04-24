@@ -43,14 +43,16 @@ const keyDic = {
 }
 const Controler = (player1Event, player2Event) => {
 
+    window.addEventListener('SWITCH', function (e) {
+        [player1Event, player2Event] = [player2Event, player1Event]
+    });
     window.addEventListener('keydown', function (e) {
         const { player, direction } = keyDic[e.keyCode]
         // console.log(player, direction)
 
         if (direction === "SWITCH") {
-            console.log("SWITCH")
+            console.log("direction SWITCH")
             window.dispatchEvent(new Event("SWITCH"))
-            [player1Event, player2Event] = [player2Event, player1Event]
         } else {
             if (player === 1) {
                 window.dispatchEvent(new CustomEvent(player1Event, { 
