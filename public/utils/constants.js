@@ -1,7 +1,7 @@
 const EXPLOSION_STRENGTH = 0.03;
 
 const PLAYERS_ASSETS = {
-  '#00ff00': {
+  "#9e6d3d": {
   stand: [
     "./assets/jumperpack_kenney/PNG/Players/bunny1_stand.png",
     "./assets/jumperpack_kenney/PNG/Players/bunny1_stand.png"
@@ -23,7 +23,7 @@ const PLAYERS_ASSETS = {
     "./assets/jumperpack_kenney/PNG/Players/bunny1_jump.png"
   ]
 },
-'#0b000': {
+"#a160cc": {
   stand: [
     "./assets/jumperpack_kenney/PNG/Players/bunny2_ready.png",
     "./assets/jumperpack_kenney/PNG/Players/bunny2_stand.png"
@@ -80,7 +80,7 @@ const TERRAIN_ASSETS = {
     "../assets/jumperpack_kenney/PNG/Environment/ground_grass_broken.png": {w: 380, h: 94},
 };
 const KEY_TERRAIN_ASSETS = Object.keys(TERRAIN_ASSETS);
- 
+
 const DEFAULT_MOVING = {
   "UP": false,
   "DOWN": false,
