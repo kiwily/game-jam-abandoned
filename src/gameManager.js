@@ -27,12 +27,11 @@ function GameManager() {
 
 GameManager();
 
-
 // run the renderer
 Render.run(render);
 
 // create runner
 var runner = Runner.create();
 
-// run the engine
-Runner.run(runner, engine);
+// run the engine - Need to click on play
+// Runner.run(runner, engine);

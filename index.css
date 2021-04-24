@@ -76,3 +76,7 @@ canvas {
 body {
   overflow-y: hidden;
 }
+
+button[disabled] {
+  color: grey;
+}
