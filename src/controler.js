@@ -33,8 +33,8 @@ const keyDic = {
         "direction": "DOWN"
     }
 }
-const Controler = (player1Event, player2Event) => {
-    let playerEvent = [player1Event, player2Event]
+const Controler = (playerEvents) => {
+    let playerEvent = [...playerEvents];
 
     // Switch commands during a switch event
     window.addEventListener('SWITCH', function (e) {

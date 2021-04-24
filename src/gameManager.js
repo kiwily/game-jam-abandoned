@@ -1,28 +1,25 @@
-let player1Event = "PLAYER_1_EVENT";
-let player2Event = "PLAYER_2_EVENT";
-const player1Color = ["#000eff", "#c00000"];
-const player2Color = ["#c00000", "#000eff"];
+const PLAYER_EVENTS = ["PLAYER_1_EVENT", "PLAYER_2_EVENT"];
+const PLAYER_COLORS = ["#000eff", "#c00000"];
+const PLAYER_COLORS_LENGTH = PLAYER_COLORS.length;
 
 function GameManager() {
     Composite.add(engine.world, Terrain());
 
-
-    const objects = {
-        squareA: Square(400, 200, player1Event, player1Color),
-        squareB: Square(450, 50, player2Event, player2Color)
-    };
-    const squaresLabels = [
-        objects.squareA.label,
-        objects.squareB.label
+    const player1Id = 0;
+    const player2Id = 1;
+    const objects = [
+        Square(400, 200, PLAYER_EVENTS[player1Id], player1Id),
+        Square(450, 50, PLAYER_EVENTS[player2Id], player2Id)
     ];
+    const squaresLabels = objects.map(x => x.label)
+    Controler(PLAYER_EVENTS)
     // Instantiate switcher
     const switcher = Switcher(squaresLabels)
-    objects["switcher"] = switcher;
+    objects.push(switcher);
 
     // add all of the bodies to the world
-    Composite.add(engine.world, Object.values(objects));
+    Composite.add(engine.world, objects);
 
-    Controler(player1Event, player2Event)
 };
 
 GameManager();

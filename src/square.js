@@ -1,7 +1,8 @@
 
 
 
-function Square(x_init, y_init, playerEvent, color) {
+function Square(x_init, y_init, playerEvent, cId) {
+    let colorId = cId;
     // Map for fluid movements
     let isMoving = {
         "UP": false,
@@ -14,13 +15,12 @@ function Square(x_init, y_init, playerEvent, color) {
         friction: 0.3,
         label: playerEvent,
         render: {
-            fillStyle: color[0],
+            fillStyle: PLAYER_COLORS[colorId],
             lineWidth: 3
        }
     });
     Body.setMass(body, 15);
     let jumpable = false;
-    let colorId = 0;
 
     // Update movement
     function move(to, triggered) {
@@ -32,10 +32,10 @@ function Square(x_init, y_init, playerEvent, color) {
 
     window.addEventListener('SWITCH', function (e) {
         colorId ++;
-        if (colorId >= color.length){
+        if (colorId >= PLAYER_COLORS_LENGTH){
             colorId = 0;
         };
-        body.render.fillStyle = color[colorId];
+        body.render.fillStyle = PLAYER_COLORS[colorId];
         isMoving = {
             "UP": false,
             "DOWN": false,
@@ -63,10 +63,10 @@ function Square(x_init, y_init, playerEvent, color) {
         }
         // Sortie en bas
         if (body.position.y < -30){
-            window.dispatchEvent(new CustomEvent("END", { 
+            window.dispatchEvent(new CustomEvent("LOST", { 
                 bubbles: true,
                 detail:{
-                    player: color[colorId],
+                    player: colorId,
                 }
             }));
         }
