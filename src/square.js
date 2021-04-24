@@ -11,6 +11,7 @@ function Square(x_init, y_init, playerEvent, color) {
     };
     // Instantiating the rectangle with its color
     const body = Bodies.rectangle(x_init, y_init, 20, 20, {
+        friction: 0.3,
         label: playerEvent,
         render: {
             fillStyle: color[0],
@@ -59,7 +60,7 @@ function Square(x_init, y_init, playerEvent, color) {
         if (isMoving["UP"]){
             if (jumpable){
                 console.log("JUMPINNG", body.label)
-                yForce = -0.3;
+                yForce = -0.4;
                 jumpable = false;
             }
         }

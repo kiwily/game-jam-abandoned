@@ -18,7 +18,7 @@ function Terrain() {
     const x = (0.5 * (rowr % 2) + 0.5 * (0.2 + 0.6 * Math.random())) * WIDTH;
     const y = HIGHER_BOUND + (LOWER_BOUND - HIGHER_BOUND) * (rowr * INV_MAXIMUM_STACK);
 
-    const width = 300 + 200 * Math.random();
+    const width = 200 + 100 * Math.random();
     const height = PLATFORM_HEIGHT;
 
     const angle = Math.random() * Math.PI * 2;
