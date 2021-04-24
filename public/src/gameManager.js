@@ -10,8 +10,10 @@ function addPlayer(playerId) {
     PLAYERS_EVENT_TO_ID['key-event-' + playerId] = playerId;
     PLAYERS_ID_TO_EVENT[playerId] = 'key-event-' + playerId;
     PLAYERS_COLOR[playerId] = 'blue';
+    PLAYERS_SCORES_LOST[playerId] = 0;
     const player = Bunny(400, 200, PLAYERS_ID_TO_EVENT[playerId], playerId);
     PLAYERS_OBJECT[playerId] = player;
+
     Composite.add(engine.world, player);
 };
 

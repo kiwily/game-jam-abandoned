@@ -47,7 +47,7 @@ function Bunny(x_init, y_init, playerEvent, playerId) {
     });
 
     Events.on(engine, 'beforeUpdate', function(event) {
-        
+
         currentAssetTime ++;
         if (currentAssetTime >= 20){
             currentAssetTime = 0;
@@ -131,7 +131,7 @@ function Bunny(x_init, y_init, playerEvent, playerId) {
             body.render.sprite.yScale = SCALE;
             xForce = -0.018;
         }
-        console.log("client move", isMoving)
+        // console.log("client move", isMoving)
         Body.applyForce(body, body.position, {x: xForce, y: yForce});
     });
     return body;

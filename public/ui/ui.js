@@ -53,7 +53,7 @@ btnPause.addEventListener("click", (event) => {
 // Update Score
 document.addEventListener("lost", (event) => {
   const player = event?.detail?.player;
-  console.log("Dead", player);
+  // console.log("Dead", player);
   if (player === undefined) {
     console.error("[LOST EVENT] No player found");
     return;
