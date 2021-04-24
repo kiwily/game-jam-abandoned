@@ -1,10 +1,15 @@
+const EXPLOSION_STRENGTH = 0.03;
 const PLAYERS_EVENT = ["PLAYER_1_EVENT", "PLAYER_2_EVENT"];
 const PLAYERS_ASSETS = [{
         stand: [
             "./assets/jumperpack_kenney/PNG/Players/bunny1_stand.png",
             "./assets/jumperpack_kenney/PNG/Players/bunny1_stand.png"
         ],
-        walk: [
+        walkLeft: [
+            "./assets/jumperpack_kenney/PNG/Players/bunny1_walk3.png",
+            "./assets/jumperpack_kenney/PNG/Players/bunny1_walk4.png"
+        ],
+        walkRight: [
             "./assets/jumperpack_kenney/PNG/Players/bunny1_walk1.png",
             "./assets/jumperpack_kenney/PNG/Players/bunny1_walk2.png"
         ],
@@ -21,7 +26,11 @@ const PLAYERS_ASSETS = [{
             "./assets/jumperpack_kenney/PNG/Players/bunny2_ready.png",
             "./assets/jumperpack_kenney/PNG/Players/bunny2_stand.png"
         ],
-        walk: [
+        walkLeft: [
+            "./assets/jumperpack_kenney/PNG/Players/bunny2_walk3.png",
+            "./assets/jumperpack_kenney/PNG/Players/bunny2_walk4.png"
+        ],
+        walkRight: [
             "./assets/jumperpack_kenney/PNG/Players/bunny2_walk1.png",
             "./assets/jumperpack_kenney/PNG/Players/bunny2_walk2.png"
         ],
@@ -37,7 +46,6 @@ const PLAYERS_ASSETS = [{
 const PLAYERS_COLOR = ["#000eff", "#c00000"];
 const PLAYERS_ID = [0, 1];
 const PLAYERS_COLOR_LENGTH = PLAYERS_COLOR.length;
-const EXPLOSION_STRENGTH = 10000;
 
 function GameManager() {
     Composite.add(engine.world, Terrain());
@@ -66,16 +74,16 @@ function GameManager() {
                 bubbles: true,
                 detail:{
                     label: elem1.label,
-                    xForce: -0.03* (elem2.position.x-elem1.position.x),
-                    yForce: -0.03* (elem2.position.y-elem1.position.y)
+                    xForce: -EXPLOSION_STRENGTH* (elem2.position.x-elem1.position.x),
+                    yForce: -EXPLOSION_STRENGTH* (elem2.position.y-elem1.position.y)
                 } 
             }));
             window.dispatchEvent(new CustomEvent("explosion", { 
                 bubbles: true,
                 detail:{
                     label: elem2.label,
-                    xForce: 0.03* (elem2.position.x-elem1.position.x),
-                    yForce: 0.03* (elem2.position.y-elem1.position.y)
+                    xForce: EXPLOSION_STRENGTH* (elem2.position.x-elem1.position.x),
+                    yForce: EXPLOSION_STRENGTH* (elem2.position.y-elem1.position.y)
                 }
             }));
         } else if (PLAYERS_EVENT.includes(elem1.label)){

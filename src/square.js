@@ -17,6 +17,7 @@ function Square(x_init, y_init, playerEvent, cId, assets) {
     let isMoving = Object.create(DEFAULT_MOVING);
     // Instantiating the rectangle with its color
     const body = Bodies.rectangle(x_init, y_init, 20, 20, {
+        frictionAir: 0.03,
         label: playerEvent,
         render: {
             fillStyle: PLAYERS_COLOR[colorId],
@@ -96,7 +97,8 @@ function Square(x_init, y_init, playerEvent, cId, assets) {
             xForce = isMoving["EXPLOSION_X"];
             yForce = isMoving["EXPLOSION_Y"];
             isMoving["EXPLOSION"] = false;
-        } else if (isMoving["UP"]){
+        }
+        if (isMoving["UP"]){
             if (isMoving["JUMPABLE"]){
                 body.render.sprite.texture = assets.jump[t];
                 body.render.sprite.xScale = SCALE;
@@ -104,25 +106,24 @@ function Square(x_init, y_init, playerEvent, cId, assets) {
                 yForce = -0.4;
                 isMoving["JUMPABLE"] = false;
             }
-        } else if (isMoving["DOWN"]){
+        }
+        if (isMoving["DOWN"]){
             body.render.sprite.texture = assets.jump[t];
             body.render.sprite.xScale = SCALE;
             body.render.sprite.yScale = SCALE;
             yForce = 0.01;
-        } else if (isMoving["RIGHT"]){
-            body.render.sprite.texture = assets.walk[t];
+        }
+        if (isMoving["RIGHT"]){
+            body.render.sprite.texture = assets.walkRight[t];
             body.render.sprite.xScale = SCALE;
             body.render.sprite.yScale = SCALE;
-            xForce = 0.015;
-        } else if (isMoving["LEFT"]){
-            body.render.sprite.texture = assets.walk[t];
+            xForce = 0.018;
+        }
+        if (isMoving["LEFT"]){
+            body.render.sprite.texture = assets.walkLeft[t];
             body.render.sprite.xScale = -SCALE;
             body.render.sprite.yScale = SCALE;
-            xForce = -0.015;
-        } else {
-            body.render.sprite.texture = assets.stand[t];
-            body.render.sprite.xScale = SCALE;
-            body.render.sprite.yScale = SCALE;
+            xForce = -0.018;
         }
         Body.applyForce(body, body.position, {x: xForce, y: yForce});
     });
