@@ -1,4 +1,25 @@
+const AUDIO_LOST = [
+  new Audio('./assets/sounds/we_lost/001_we-lost.wav'),
+  new Audio('./assets/sounds/we_lost/002_we-lost.wav'),
+  new Audio('./assets/sounds/we_lost/003_we-lost.wav'),
+];
 
+const AUDIO_JUMP = [
+  new Audio('./assets/sounds/jump/001_jump.wav'),
+  new Audio('./assets/sounds/jump/002_jump.wav'),
+  new Audio('./assets/sounds/jump/003_jump.wav'),
+  new Audio('./assets/sounds/jump/004_jump.wav'),
+  new Audio('./assets/sounds/jump/005_jump.wav'),
+  new Audio('./assets/sounds/jump/006_jump.wav'),
+  new Audio('./assets/sounds/jump/007_jump.wav'),
+  new Audio('./assets/sounds/swing/001_jump.wav'),
+  new Audio('./assets/sounds/swing/002_jump.wav'),
+  new Audio('./assets/sounds/swing/003_jump.wav'),
+  new Audio('./assets/sounds/swing/004_jump.wav'),
+  new Audio('./assets/sounds/swing/005_jump.wav'),
+  new Audio('./assets/sounds/swing/006_jump.wav'),
+  new Audio('./assets/sounds/swing/007_jump.wav'),
+];
 
 function Bunny(x_init, y_init, playerEvent) {
     let currentAssetTime = 0;
@@ -60,10 +81,9 @@ function Bunny(x_init, y_init, playerEvent) {
         }
         // Sortie en bas
         if (body.position.y > HEIGHT + 40){
-            // Son
-            const num = Math.floor(Math.random() * 3 + 1)
-            const audioLost = new Audio('./assets/sounds/we_lost/00' + String(num) + '_we-lost.wav');
-            audioLost.play()
+            // Sound
+            const audio = AUDIO_LOST[Math.floor(Math.random() * AUDIO_LOST.length)];
+            playCustomAudio(audio);
             // Event lost pour le score
             document.dispatchEvent(new CustomEvent("lost", {
                 bubbles: true,
@@ -94,14 +114,8 @@ function Bunny(x_init, y_init, playerEvent) {
         if (isMoving["UP"]){
             if (isMoving["JUMPABLE"]){
                 // Sound
-                const num = Math.floor(Math.random() * 7 + 1)
-                let audioJump;
-                if (Math.random() > 0.5){
-                    audioJump = new Audio('./assets/sounds/jump/00' + String(num) + '_jump.wav');
-                } else {
-                    audioJump = new Audio('./assets/sounds/swing/00' + String(num) + '_swing.wav');
-                }
-                audioJump.play()
+                const audio = AUDIO_JUMP[Math.floor(Math.random() * AUDIO_JUMP.length)];
+                playCustomAudio(audio);
                 // Sprite movement
                 body.render.sprite.texture = PLAYERS_ASSETS[color].jump[t];
                 body.render.sprite.xScale = SCALE;

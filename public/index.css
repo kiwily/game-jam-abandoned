@@ -90,7 +90,6 @@ button[disabled] {
 
 div#ui {
   float: right;
-  margin-right: 10rem;
 
   padding: 2rem;
 
@@ -99,4 +98,18 @@ div#ui {
 
 div#ui h1:first-child {
   margin-top: 0;
+}
+
+div#ui button {
+  border: solid;
+  padding: 1rem;
+  margin: 0.5rem;
+
+  cursor: pointer;
+}
+
+div#ui button[aria-pressed=true] {
+  border: solid;
+  background: #4d4d4d;
+  color: #f5f5f5;
 }

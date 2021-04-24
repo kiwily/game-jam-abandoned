@@ -15,8 +15,17 @@ btnAudio.addEventListener("click", (e) => {
   if (hasAudio) {
     audioGameBackground.pause();
     hasAudio = false;
+    btnAudio.setAttribute('aria-pressed', false);
   } else {
     audioGameBackground.play();
     hasAudio = true;
+    btnAudio.setAttribute('aria-pressed', true);
   };
 });
+
+
+function playCustomAudio(audio) {
+  if (hasAudio) {
+    audio.play();
+  }
+}

@@ -86,7 +86,7 @@ function GameManager() {
   // Instantiate switcher
   // const bunnyLabels = objects.map(x => x.label)
   const switchers = [];
-  for (let i = 0; i < 1; i++) {
+  for (let i = 0; i < 3; i++) {
     const {switcher, listeners} = Switcher()
     collisionStartListeners.push(...listeners)
     switchers.push(switcher);
