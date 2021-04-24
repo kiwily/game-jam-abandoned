@@ -2,7 +2,8 @@ const btnPlay = document.querySelector("#btn-play");
 const btnPause = document.querySelector("#btn-pause");
 const ulScore = document.querySelector("#ul-score");
 
-let IS_PLAYING = false;
+Runner.run(runner, engine);
+let IS_PLAYING = true;
 
 btnPlay.addEventListener("click", (event) => {
   if (IS_PLAYING) {
@@ -31,7 +32,8 @@ btnPause.addEventListener("click", (event) => {
 document.addEventListener("lost", (event) => {
   const player = event?.detail?.player;
   if (!player) {
-    console.error("[LOST EVENT] No player found")
+    console.error("[LOST EVENT] No player found");
     return;
   };
+  console.log("[LOST EVENT]", player);
 })

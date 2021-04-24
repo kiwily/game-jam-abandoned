@@ -15,7 +15,7 @@ function Square(x_init, y_init, playerEvent, cId) {
         friction: 0.3,
         label: playerEvent,
         render: {
-            fillStyle: PLAYER_COLORS[colorId],
+            fillStyle: PLAYERS_COLOR[colorId],
             lineWidth: 3
        }
     });
@@ -32,10 +32,10 @@ function Square(x_init, y_init, playerEvent, cId) {
 
     window.addEventListener('switch', function (e) {
         colorId ++;
-        if (colorId >= PLAYER_COLORS_LENGTH){
+        if (colorId >= PLAYERS_COLOR_LENGTH){
             colorId = 0;
         };
-        body.render.fillStyle = PLAYER_COLORS[colorId];
+        body.render.fillStyle = PLAYERS_COLOR[colorId];
         isMoving = {
             "UP": false,
             "DOWN": false,
