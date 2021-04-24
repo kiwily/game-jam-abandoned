@@ -14,12 +14,28 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
+// ENVIRONEMENT
+let HOST = null;
+const USER_POOL = [];
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', function (req, res) {
-    res.sendFile('index.html', {root: __dirname});
+    if (HOST === null) {
+      res.redirect('/host');
+    } else {
+      res.redirect('/client');
+    }
 });
 
-app.get('/message/', function (req, res) {
+app.get('/host', function (req, res) {
+    res.sendFile('host.html', {root: __dirname});
+});
+
+app.get('/client', function (req, res) {
+    res.sendFile('client.html', {root: __dirname});
+});
+
+app.get('/message', function (req, res) {
     res.sendFile('message.html', {root: __dirname});
 });
 
@@ -40,9 +56,14 @@ app.use(function(err, req, res, next) {
 });
 
 io.on("connection", (socket) => {
-  console.log("a user connected");
+  console.log("a user connected", socket.id);
+  if (HOST === null) {
+    HOST = socket.id;
+    console.log("Set Host to", socket.id);
+  };
+
   socket.on("disconnect", () => {
-    console.log("user disconnected");
+    console.log("user disconnected", socket.id);
   });
   socket.on("chat message", (msg) => {
     console.log("message: " + msg);
