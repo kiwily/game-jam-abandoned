@@ -9,6 +9,7 @@ const Engine = Matter.Engine,
     Body = Matter.Body,
     Bodies = Matter.Bodies,
     Vector = Matter.Vector,
+    Events = Matter.Events,
     Composite = Matter.Composite;
 
 // create an engine
