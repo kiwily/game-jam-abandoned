@@ -46,8 +46,8 @@ const Controler = (player1Event, player2Event) => {
     window.addEventListener('SWITCH', function (e) {
         [player1Event, player2Event] = [player2Event, player1Event]
     });
-    window.addEventListener('keydown', function (e) {
-        const { player, direction } = keyDic[e.keyCode]
+    function handleKey(e, triggered){
+        const { player, direction } = keyDic[e.keyCode] || [null, null]
         // console.log(player, direction)
 
         if (direction === "SWITCH") {
@@ -59,7 +59,7 @@ const Controler = (player1Event, player2Event) => {
                     bubbles: true,
                     detail:{
                         direction: direction,
-                        triggered: true
+                        triggered
                     } 
                 }));
             } else if (player === 2) {
@@ -67,30 +67,16 @@ const Controler = (player1Event, player2Event) => {
                     bubbles: true,
                     detail:{
                         direction: direction,
-                        triggered: true
+                        triggered
                     } 
                 }));
             }
         }
+    }
+    window.addEventListener('keydown', function (e) {
+        handleKey(e, true)
     }, false);
     window.addEventListener('keyup', function (e) {
-        const { player, direction } = keyDic[e.keyCode]
-        if (player === 1) {
-            window.dispatchEvent(new CustomEvent(player1Event, { 
-                bubbles: true,
-                detail:{
-                    direction: direction,
-                    triggered: false
-                } 
-            }));
-        } else if (player === 2) {
-            window.dispatchEvent(new CustomEvent(player2Event, { 
-                bubbles: true,
-                detail:{
-                    direction: direction,
-                    triggered: false
-                } 
-            }));
-        }
+        handleKey(e, false)
     }, false);
 };

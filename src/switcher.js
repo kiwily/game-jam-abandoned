@@ -6,6 +6,7 @@ function Switcher(players) {
     const body = Bodies.circle(400, 100, 4, {
         label: "switcher",
         isStatic: true,
+        isSensor: true,
         render: {
             fillStyle: "#ff00ff"
        }
