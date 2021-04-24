@@ -17,7 +17,6 @@ function Square(x_init, y_init, playerEvent, cId, assets) {
     let isMoving = Object.create(DEFAULT_MOVING);
     // Instantiating the rectangle with its color
     const body = Bodies.rectangle(x_init, y_init, 20, 20, {
-        friction: 0.3,
         label: playerEvent,
         render: {
             fillStyle: PLAYERS_COLOR[colorId],
@@ -58,13 +57,6 @@ function Square(x_init, y_init, playerEvent, cId, assets) {
     });
 
     Events.on(engine, 'beforeUpdate', function(event) {
-        console.log(body.angle)
-        Body.rotate(body, -body.angle/30)
-        // Update du sprite
-        // currentAssetTime ++;
-        // if (currentAssetTime >= 20){
-        //     currentAssetTime = 0;
-        // }
         // const t = Math.floor(currentAssetTime/10);
         // Sortie sur les bords
         if (body.position.x < -5){
