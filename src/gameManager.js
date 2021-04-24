@@ -53,8 +53,8 @@ function GameManager() {
     const player1Id = PLAYERS_ID[0];
     const player2Id = PLAYERS_ID[1];
     const objects = [
-        Square(400, 200, PLAYERS_EVENT[player1Id], player1Id, PLAYERS_ASSETS[player1Id]),
-        Square(450, 50, PLAYERS_EVENT[player2Id], player2Id, PLAYERS_ASSETS[player2Id])
+        Square(400, 200, PLAYERS_EVENT[player1Id], player1Id),
+        Square(450, 50, PLAYERS_EVENT[player2Id], player2Id)
     ];
     const squaresLabels = objects.map(x => x.label)
     Controler(PLAYERS_EVENT)

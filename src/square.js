@@ -10,8 +10,8 @@ const DEFAULT_MOVING = {
     "EXPLOSION_Y": 0
 };
 
-function Square(x_init, y_init, playerEvent, cId, assets) {
-    let colorId = cId;
+function Square(x_init, y_init, playerEvent, _colorId) {
+    let colorId = _colorId;
     let currentAssetTime = 0;
     // Map for fluid movements
     let isMoving = Object.create(DEFAULT_MOVING);
@@ -23,7 +23,7 @@ function Square(x_init, y_init, playerEvent, cId, assets) {
             fillStyle: PLAYERS_COLOR[colorId],
             lineWidth: 3,
             sprite: {
-                texture: assets["stand"][0],
+                texture: PLAYERS_ASSETS[colorId]["stand"][0],
                 xScale: SCALE,
                 yScale: SCALE
             }
@@ -54,7 +54,7 @@ function Square(x_init, y_init, playerEvent, cId, assets) {
         if (colorId >= PLAYERS_COLOR_LENGTH){
             colorId = 0;
         };
-        body.render.fillStyle = PLAYERS_COLOR[colorId];
+        body.render.sprite.texture = PLAYERS_ASSETS[colorId].hurt[0];
         isMoving = Object.create(DEFAULT_MOVING);
     });
 
@@ -93,14 +93,14 @@ function Square(x_init, y_init, playerEvent, cId, assets) {
         let xForce = 0;
         let yForce = 0;
         if (isMoving["EXPLOSION"]){
-            body.render.sprite.texture = assets.hurt[t];
+            body.render.sprite.texture = PLAYERS_ASSETS[colorId].hurt[t];
             xForce = isMoving["EXPLOSION_X"];
             yForce = isMoving["EXPLOSION_Y"];
             isMoving["EXPLOSION"] = false;
         }
         if (isMoving["UP"]){
             if (isMoving["JUMPABLE"]){
-                body.render.sprite.texture = assets.jump[t];
+                body.render.sprite.texture = PLAYERS_ASSETS[colorId].jump[t];
                 body.render.sprite.xScale = SCALE;
                 body.render.sprite.yScale = SCALE;
                 yForce = -0.4;
@@ -108,19 +108,19 @@ function Square(x_init, y_init, playerEvent, cId, assets) {
             }
         }
         if (isMoving["DOWN"]){
-            body.render.sprite.texture = assets.jump[t];
+            body.render.sprite.texture = PLAYERS_ASSETS[colorId].jump[t];
             body.render.sprite.xScale = SCALE;
             body.render.sprite.yScale = SCALE;
             yForce = 0.01;
         }
         if (isMoving["RIGHT"]){
-            body.render.sprite.texture = assets.walkRight[t];
+            body.render.sprite.texture = PLAYERS_ASSETS[colorId].walkRight[t];
             body.render.sprite.xScale = SCALE;
             body.render.sprite.yScale = SCALE;
             xForce = 0.018;
         }
         if (isMoving["LEFT"]){
-            body.render.sprite.texture = assets.walkLeft[t];
+            body.render.sprite.texture = PLAYERS_ASSETS[colorId].walkLeft[t];
             body.render.sprite.xScale = -SCALE;
             body.render.sprite.yScale = SCALE;
             xForce = -0.018;
