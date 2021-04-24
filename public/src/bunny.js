@@ -1,6 +1,6 @@
 
 
-function Bunny(x_init, y_init, playerEvent, playerId) {
+function Bunny(x_init, y_init, playerEvent) {
     let currentAssetTime = 0;
     // Map for fluid movements
     let isMoving = Object.create(DEFAULT_MOVING)
@@ -70,7 +70,7 @@ function Bunny(x_init, y_init, playerEvent, playerId) {
             document.dispatchEvent(new CustomEvent("lost", {
                 bubbles: true,
                 detail:{
-                    player: 0,
+                    player: PLAYERS_EVENT_TO_ID[playerEvent],
                 }
             }));
             // Remise a 0 de la position
