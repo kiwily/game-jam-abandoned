@@ -1,40 +1,40 @@
 
 const keyDic = {
     87: {
-        "player": 1,
+        "player": 0,
         "direction": "UP"
     },
     65: {
-        "player": 1,
+        "player": 0,
         "direction": "LEFT"
     },
     68: {
-        "player": 1,
+        "player": 0,
         "direction": "RIGHT"
     },
     83: {
-        "player": 1,
+        "player": 0,
         "direction": "DOWN"
     },
     38: {
-        "player": 2,
+        "player": 1,
         "direction": "UP"
     },
     37: {
-        "player": 2,
+        "player": 1,
         "direction": "LEFT"
     },
     39: {
-        "player": 2,
+        "player": 1,
         "direction": "RIGHT"
     },
     40: {
-        "player": 2,
+        "player": 1,
         "direction": "DOWN"
     }
 }
 const Controler = (player1Event, player2Event) => {
-    const playerEvent = [player1Event, player2Event]
+    let playerEvent = [player1Event, player2Event]
 
     // Switch commands during a switch event
     window.addEventListener('SWITCH', function (e) {
