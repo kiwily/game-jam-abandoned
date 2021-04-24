@@ -1,7 +1,6 @@
 
 
 function Switcher(players) {
-    console.log(players)
     // Instantiating the switcher
     const body = Bodies.circle(400, 100, 4, {
         label: "switcher",
@@ -24,7 +23,6 @@ function Switcher(players) {
     Events.on(engine, 'collisionStart', function(event) {
         var aElm = event.pairs[0].bodyA.label;
         var bElm = event.pairs[0].bodyB.label;
-        console.log("collision", aElm,bElm)
         if ((aElm === body.label && players.includes(bElm)) || (players.includes(aElm) && bElm === body.label)){
             window.dispatchEvent(new Event("switch"))
             reposition()

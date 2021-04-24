@@ -51,6 +51,12 @@ function Square(x_init, y_init, playerEvent, cId) {
         if (aElm === body.label || bElm === body.label){
             jumpable = true;
         }
+        if (aElm === body.label || bElm === body.label){
+            Body.applyForce(body, body.position, {
+                x: (forceMagnitude + Common.random() * forceMagnitude) * Common.choose([1, -1]), 
+                y: -forceMagnitude + Common.random() * -forceMagnitude
+            });
+        }
     });
 
     Events.on(engine, 'beforeUpdate', function(event) {
@@ -62,7 +68,7 @@ function Square(x_init, y_init, playerEvent, cId) {
             Body.setPosition(body, {x: -2, y: body.position.y});
         }
         // Sortie en bas
-        if (body.position.y < -30){
+        if (body.position.y > HEIGHT + 40){
             window.dispatchEvent(new CustomEvent("lost", { 
                 bubbles: true,
                 detail:{
@@ -76,7 +82,6 @@ function Square(x_init, y_init, playerEvent, cId) {
         let yForce = 0;
         if (isMoving["UP"]){
             if (jumpable){
-                console.log("JUMPINNG", body.label)
                 yForce = -0.4;
                 jumpable = false;
             }

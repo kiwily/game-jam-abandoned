@@ -9,7 +9,6 @@ btnPlay.addEventListener("click", (event) => {
   if (IS_PLAYING) {
     return;
   };
-  console.log("Play");
   Runner.run(runner, engine);
   IS_PLAYING = true;
 
@@ -21,7 +20,6 @@ btnPause.addEventListener("click", (event) => {
   if (!IS_PLAYING) {
     return;
   };
-  console.log("Pause");
   Runner.stop(runner);
   IS_PLAYING = false;
 
