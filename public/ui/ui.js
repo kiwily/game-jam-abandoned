@@ -59,5 +59,4 @@ document.addEventListener("lost", (event) => {
     return;
   };
   PLAYERS_SCORES_LOST[player] += 1;
-  renderUlScore();
 })

@@ -4,7 +4,6 @@ socket.emit("new client", "name");
 
 
 let assets = {};
-let PLAYERS_ID;
 let PLAYERS_COLOR;
 
 socket.on("connect id", function(data) {
@@ -56,7 +55,6 @@ function renderUlScore() {
 // Initialisation for organizing objects
 socket.on("client update", function(data) {
     // Updating players
-    PLAYERS_ID = data.players_id;
     PLAYERS_SCORES_LOST = data.players_scores_lost;
     PLAYERS_COLOR = data.players_color;
     renderUlScore();

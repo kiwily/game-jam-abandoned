@@ -1,4 +1,3 @@
-const PLAYERS_ID = [];
 const PLAYERS_EVENT_TO_ID = {};
 const PLAYERS_ID_TO_EVENT = {};
 const PLAYERS_SCORES_LOST = {};
@@ -36,7 +35,6 @@ function GameManager() {
   socket.on("host connect id", (data) => {
     const newPlayerId = data.newPlayerId;
 
-    PLAYERS_ID.push(newPlayerId);
     PLAYERS_EVENT_TO_ID['key-event-' + newPlayerId] = newPlayerId;
     PLAYERS_ID_TO_EVENT[newPlayerId] = 'key-event-' + newPlayerId;
     PLAYERS_COLOR[newPlayerId] = 'blue';
@@ -50,7 +48,6 @@ function GameManager() {
     const oldPlayerId = data.oldPlayerId;
     removePlayer(oldPlayerId);
 
-    delete PLAYERS_ID.oldPlayerId;
     delete PLAYERS_EVENT_TO_ID['key-event-' + oldPlayerId];
     delete PLAYERS_ID_TO_EVENT[oldPlayerId];
     delete PLAYERS_COLOR[oldPlayerId];
@@ -107,8 +104,13 @@ function GameManager() {
 
   // Send aggregate screenshot to server
   function updateServer(timestamp) {
+    try {
+      renderUlScore();
+    } catch (err) {
+      console.error("Function not defined for now");
+    };
+
     socket.emit("host update", {
-      players_id: PLAYERS_ID,
       players_scores_lost: PLAYERS_SCORES_LOST,
       players_color: PLAYERS_COLOR,
       objects: Composite.allBodies(engine.world).map((item, i) => (
