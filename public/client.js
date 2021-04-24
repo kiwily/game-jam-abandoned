@@ -3,7 +3,8 @@ const socket = io();
 
 socket.emit("new client", "name");
 
-let assets;
+let assetsList = [];
+let assetsDic = {};
 let PLAYERS_ID;
 let PLAYERS_LOST;
 let PLAYERS_COLOR;
@@ -25,50 +26,46 @@ function renderUlScore() {
     });
 }
 
-// Initialisation for organizing objects
-socket.on("init", function(data) {
-    console.log("init", data)
-    assets = [];
 
-    // Initializing players
+
+// Initialisation for organizing objects
+socket.on("client update", function(data) {
+    // Updating players
     ulScore = document.querySelector("#ul-score");
     PLAYERS_ID = data.players_id;
     PLAYERS_LOST = data.players_lost;
     PLAYERS_COLOR = data.players_color;
 
-    // Initializing objects
+    assetsVerified = Object.copy(assets);
+    // Updating objects
     for (object in data.objects){
-        const asset;
-        const props = {
-            isStatic: true,
-            render: {
-                sprite: {
-                    texture: object.texture,
-                    xScale: object.ratio,
-                    yScale: object.ratio,
-                }
-            }
-        };
-        if (object.type === "rectangle"){
-            asset = Bodies.rectangle(object.x, object.y, object.width , object.height, props);
+        if (assets[objet.id]){
+            // Object exists, we update it
+            Body.setPosition(assets[objet.id].object, object.position);
+            assets[objet.id].object.render.sprite = object.sprite;
+            assets[objet.id].object.angle = object.angle;
+            // Mark it as visited
+            delete assetsVerified[object.id];
         } else {
-            asset = Bodies.circle(object.x, object.y, object.width , object.height, props);
+            // Object doesn't exist, we create it
+            const props = {
+                isStatic: true,
+                render: {
+                    sprite: object.sprite
+                }
+            };
+            asset = Bodies.rectangle(object.position.x, object.position.y, 1 , 1, props);
+            asset.angle = object.angle;
+            Composite.add(engine.world, asset)
+            // Remember this object for future updates
+            assets[object.id] = asset;
+
         }
-        assets.push(asset);
-        Composite.add(engine.world, asset)
     }
-});
-
-// Frame per frame updates
-socket.on("update", function(data) {
-    console.log("new update", data)
-
-    data.objects.forEach((object, i) => {
-        asset = assets[i];
-        Body.setPosition(asset, {
-          x: object.x,
-          y: object.y,
-        });
-        asset.render.sprite.texture = object.texture;
+    // Remove unused objects from assets
+    assetsVerified.keys().forEach((key, _) => {
+        Composite.remove(engine.world, assets.key)
+        delete assets.key
     });
 });
+
