@@ -12,14 +12,15 @@ const AUDIO_JUMP = [
   new Audio('./assets/sounds/jump/005_jump.wav'),
   new Audio('./assets/sounds/jump/006_jump.wav'),
   new Audio('./assets/sounds/jump/007_jump.wav'),
-  new Audio('./assets/sounds/swing/001_jump.wav'),
-  new Audio('./assets/sounds/swing/002_jump.wav'),
-  new Audio('./assets/sounds/swing/003_jump.wav'),
-  new Audio('./assets/sounds/swing/004_jump.wav'),
-  new Audio('./assets/sounds/swing/005_jump.wav'),
-  new Audio('./assets/sounds/swing/006_jump.wav'),
-  new Audio('./assets/sounds/swing/007_jump.wav'),
+  new Audio('./assets/sounds/swing/001_swing.wav'),
+  new Audio('./assets/sounds/swing/002_swing.wav'),
+  new Audio('./assets/sounds/swing/003_swing.wav'),
+  new Audio('./assets/sounds/swing/004_swing.wav'),
+  new Audio('./assets/sounds/swing/005_swing.wav'),
+  new Audio('./assets/sounds/swing/006_swing.wav'),
+  new Audio('./assets/sounds/swing/007_swing.wav'),
 ];
+
 
 function Bunny(x_init, y_init, playerEvent) {
     let currentAssetTime = 0;
@@ -27,7 +28,7 @@ function Bunny(x_init, y_init, playerEvent) {
     // Map for fluid movements
     let isMoving = Object.create(DEFAULT_MOVING)
     // Instantiating the rectangle with its color
-    const body = Bodies.rectangle(x_init, y_init, 20, 20, {
+    const body = Bodies.rectangle(x_init, y_init, BUNNY_SIZE * 0.75, BUNNY_SIZE, {
         frictionAir: AIR_FRICTION,
         friction: GROUND_FRICTION,
         label: playerEvent,

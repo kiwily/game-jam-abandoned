@@ -1,4 +1,4 @@
-const EXPLOSION_STRENGTH = 0.03;
+const EXPLOSION_STRENGTH = 0.1;
 
 const PLAYERS_ASSETS = {
   "#9e6d3d": {
@@ -180,7 +180,15 @@ const KEY_DICT = {
         "direction": "DOWN"
     }
 }
-const SCALE = 0.18;
+
+const BUNNY_SIZE = 60;
+const HEIGHT_BUNNY = 200;
+
+const SCALE = 1.2 * BUNNY_SIZE / HEIGHT_BUNNY;
+
+const CARROT_SIZE = 35;
+const DESIRED_CARROT_SIZE = 30;
+const CARROT_SCALE = DESIRED_CARROT_SIZE / CARROT_SIZE;
 
 // ASSET SIZE
 const TERRAIN_ASSETS = {
@@ -206,7 +214,7 @@ const WIDTH = window.innerHeight * 0.8;
 const HEIGHT = window.innerHeight * 0.8;
 
 
-const MAXIMUM_STACK = 9;
+const MAXIMUM_STACK = 10;
 const INV_MAXIMUM_STACK = 1 / MAXIMUM_STACK;
 
 const AMPLITUDE_MIN = 50;
@@ -214,12 +222,12 @@ const AMPLITUDE = 200;
 const SPEED_MIN = 0.0005;
 const SPEED_RANGE = 0.0005;
 
-const RATIO = .4;
+const RATIO = .5;
 
 const SCROLL_SPEED = 1;
 
-const RUN_FORCE = 0.08;
-const JUMP_FORCE = 3.45;
+const RUN_FORCE = 0.1;
+const JUMP_FORCE = 4;
 const WEIGHT = 100;
 const AIR_FRICTION = 0.03;
 const GROUND_FRICTION = 0.0035;

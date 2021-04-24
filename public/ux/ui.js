@@ -47,12 +47,12 @@ function renderUlScore() {
 //   btnPause.disabled = true;
 // });
 //
-// // Update Score
-// document.addEventListener("lost", (event) => {
-//   const player = event?.detail?.player;
-//   if (player === undefined) {
-//     console.error("[LOST EVENT] No player found");
-//     return;
-//   };
-//   PLAYERS_SCORES_LOST[player] += 1;
-// })
+// Update Score
+document.addEventListener("lost", (event) => {
+  const player = event?.detail?.player;
+  if (player === undefined) {
+    console.error("[LOST EVENT] No player found");
+    return;
+  };
+  PLAYERS_SCORES_LOST[player] += 1;
+})

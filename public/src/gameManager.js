@@ -4,6 +4,16 @@ const PLAYERS_SCORES_LOST = {};
 const PLAYERS_OBJECT = {};
 const COLOR_FROM_ID = {};
 
+const AUDIO_EXPLOSION = [
+  new Audio('./assets/sounds/meow/001_meow.wav'),
+  new Audio('./assets/sounds/meow/002_meow.wav'),
+  new Audio('./assets/sounds/meow/003_meow.wav'),
+  new Audio('./assets/sounds/meow/004_meow.wav'),
+  new Audio('./assets/sounds/meow/005_meow.wav'),
+  new Audio('./assets/sounds/meow/006_meow.wav'),
+  new Audio('./assets/sounds/meow/007_meow.wav'),
+];
+
 
 function addPlayer(playerId) {
     PLAYERS_EVENT_TO_ID['key-event-' + playerId] = playerId;
@@ -31,8 +41,8 @@ function explosionAndJump(pair) {
   // Collision between two players
   if (Object.keys(PLAYERS_EVENT_TO_ID).includes(elem1.label) && Object.keys(PLAYERS_EVENT_TO_ID).includes(elem2.label)){
     const num = Math.floor(Math.random() * 7 + 1)
-    const audioExplosion = new Audio('./assets/sounds/meow/00' + String(num) + '_meow.wav');
-    audioExplosion.play()
+    const audio = AUDIO_EXPLOSION[Math.floor(Math.random() * AUDIO_EXPLOSION.length)];
+    playCustomAudio(audio);
     window.dispatchEvent(new CustomEvent("explosion", {
       bubbles: true,
       detail:{

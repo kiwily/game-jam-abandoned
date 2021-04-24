@@ -6,15 +6,15 @@ const AUDIO_POWERS = [
 
 function Switcher() {
     // Instantiating the switcher
-    const switcher = Bodies.circle(0, 0, 10, {
+    const switcher = Bodies.circle(0, 0, DESIRED_CARROT_SIZE, {
         label: "switcher",
         isStatic: true,
         isSensor: true,
         render: {
             sprite: {
                 texture: "./assets/jumperpack_kenney/PNG/Items/carrot.png",
-                xScale: 0.34,
-                yScale: 0.34
+                xScale: CARROT_SCALE,
+                yScale: CARROT_SCALE,
             }
        }
     });
@@ -44,7 +44,8 @@ function Switcher() {
         return;
       };
       // Sound
-      AUDIO_POWERS[Math.floor(Math.random() * AUDIO_POWERS.length)].play();
+      const audio = AUDIO_POWERS[Math.floor(Math.random() * AUDIO_POWERS.length)];
+      playCustomAudio(audio);
       // Switch
       window.dispatchEvent(new Event("switch"))
       setPosition()
