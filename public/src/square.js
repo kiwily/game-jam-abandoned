@@ -17,6 +17,7 @@ function Square(x_init, y_init, playerEvent, playerId) {
             }
        }
     });
+    console.log(body.label, playerEvent)
     Body.setMass(body, 15);
     Body.setInertia(body, Infinity);
     // Update movement

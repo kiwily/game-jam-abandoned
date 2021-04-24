@@ -2,25 +2,24 @@
 function HostControler() {
     // Switch commands during a switch event
     window.addEventListener('switch', function (e) {
-        const playersEventCopy = Object.create(PLAYERS_EVENT);
-        const shuffledPlayersEventValues = PLAYERS_EVENT.values.sort((a, b) => 0.5 - Math.random());
-        Object.keys(PLAYERS_EVENT).forEach((key, i) => {
-          PLAYERS_EVENT[key] = shuffledPlayersEventValues[i];
+        const shuffledPlayersEventValues = PLAYERS_ID_TO_EVENT.values.sort((a, b) => 0.5 - Math.random());
+        Object.keys(PLAYERS_ID_TO_EVENT).forEach((key, i) => {
+            PLAYERS_ID_TO_EVENT[key] = shuffledPlayersEventValues[i];
         });
     });
 
     // Function to fire the right player's movement
     function handleKey(playerId, keyCode, triggered){
-        const { direction } = KEY_DICT[keyCode] || null;
+        const data = KEY_DICT[keyCode] || null;
 
-        if (direction === null) {
+        if (data === null) {
           return;
         };
 
-        window.dispatchEvent(new CustomEvent(PLAYERS_EVENT[playerId], {
+        window.dispatchEvent(new CustomEvent(PLAYERS_ID_TO_EVENT[playerId], {
             bubbles: true,
             detail:{
-                direction: direction,
+                direction: data.direction,
                 triggered
             }
         }));

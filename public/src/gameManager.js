@@ -1,11 +1,14 @@
 const PLAYERS_ID = [];
-const PLAYERS_EVENT = {};
+const PLAYERS_EVENT_TO_ID = {};
+const PLAYERS_ID_TO_EVENT = {};
 const PLAYERS_COLOR = {};
 const PLAYERS_OBJECT = {}
 let PLAYERS_COLOR_LENGTH = PLAYERS_COLOR.length;
 
 function addPlayer(playerId) {
-  const player = Square(400, 200, PLAYERS_EVENT[playerId], playerId);
+    console.log(PLAYERS_ID_TO_EVENT, playerId, PLAYERS_ID_TO_EVENT[playerId]);
+    console.log(Object.keys(PLAYERS_ID_TO_EVENT), playerId, Object.keys(PLAYERS_ID_TO_EVENT)[0] === playerId);
+  const player = Square(400, 200, PLAYERS_ID_TO_EVENT[playerId], playerId);
   PLAYERS_OBJECT[playerId] = player;
   Composite.add(engine.world, player);
 };
@@ -30,11 +33,12 @@ function GameManager() {
   // Listen for new/old player
   socket.on("host connect id", (data) => {
     const newPlayerId = data.newPlayerId;
-    addPlayer(newPlayerId);
 
     PLAYERS_ID.push(newPlayerId);
-    PLAYERS_EVENT['key-event-' + PLAYER_ID] = newPlayerId;
+    PLAYERS_EVENT_TO_ID['key-event-' + newPlayerId] = newPlayerId;
+    PLAYERS_ID_TO_EVENT[newPlayerId] = 'key-event-' + newPlayerId;
     PLAYERS_COLOR[newPlayerId] = 'blue';
+    addPlayer(newPlayerId);
 
     PLAYERS_COLOR_LENGTH = PLAYERS_COLOR.length;
   });
@@ -44,7 +48,8 @@ function GameManager() {
     removePlayer(oldPlayerId);
 
     delete PLAYERS_ID.oldPlayerId;
-    delete PLAYERS_EVENT['key-event-' + PLAYER_ID];
+    delete PLAYERS_EVENT_TO_ID['key-event-' + PLAYER_ID];
+    delete PLAYERS_ID_TO_EVENT[PLAYER_ID];
     delete PLAYERS_COLOR[oldPlayerId];
 
     PLAYERS_COLOR_LENGTH = PLAYERS_COLOR.length;
@@ -55,7 +60,7 @@ function GameManager() {
     var elem1 = event.pairs[0].bodyA;
     var elem2 = event.pairs[0].bodyB;
     // Collision between two players
-    if (PLAYERS_ID.includes(elem1.label) && PLAYERS_ID.includes(elem2.label)){
+    if (Object.keys(PLAYERS_EVENT_TO_ID).includes(elem1.label) && Object.keys(PLAYERS_EVENT_TO_ID).includes(elem2.label)){
       const num = Math.floor(Math.random() * 7 + 1)
       const audioExplosion = new Audio('./assets/sounds/meow/00' + String(num) + '_meow.wav');
       audioExplosion.play()
@@ -76,8 +81,8 @@ function GameManager() {
         }
       }));
       // Collision between player and anything
-    } else if (PLAYERS_ID.includes(elem1.label)){
-      window.dispatchEvent(new CustomEvent(elem1.label, {
+    } else if (Object.keys(PLAYERS_EVENT_TO_ID).includes(elem1.label)){
+        window.dispatchEvent(new CustomEvent(elem1.label, {
         bubbles: true,
         detail:{
           direction: "JUMPABLE",
@@ -85,8 +90,8 @@ function GameManager() {
         }
       }));
       // Collision between player and anything
-    } else if (PLAYERS_ID.includes(elem2.label)){
-      window.dispatchEvent(new CustomEvent(elem2.label, {
+    } else if (Object.keys(PLAYERS_EVENT_TO_ID).includes(elem2.label)){
+        window.dispatchEvent(new CustomEvent(elem2.label, {
         bubbles: true,
         detail:{
           direction: "JUMPABLE",
