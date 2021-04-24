@@ -15,8 +15,8 @@ function Terrain() {
     const height = RATIO * h;
 
     const angle = Math.random() * Math.PI * 2;
-    const amplitude = 50 + 100 * Math.random();
-    const speed = 0.0005 + 0.0005 * Math.random();
+    const amplitude = AMPLITUDE_MIN + AMPLITUDE * Math.random();
+    const speed = SPEED_MIN + SPEED_RANGE * Math.random();
     const offset = x - amplitude * Math.sin(angle);
     pulsations.push({
       angle: angle,

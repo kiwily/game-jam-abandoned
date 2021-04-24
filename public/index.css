@@ -68,7 +68,7 @@ body {
 /* GLOBAL STYLES */
 div#game {
   width: 100%;
-  max-width: 68rem;
+  max-width: 80vh;
   margin: 0 auto;
 
   margin-top: 10rem;

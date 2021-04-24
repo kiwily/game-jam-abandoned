@@ -202,17 +202,19 @@ const DEFAULT_MOVING = {
   "EXPLOSION_Y": 0
 };
 
-const WIDTH = 800;
-const HEIGHT = 800;
+const WIDTH = window.innerHeight * 0.8;
+const HEIGHT = window.innerHeight * 0.8;
 
 
-const MAXIMUM_STACK = 7;
+const MAXIMUM_STACK = 9;
 const INV_MAXIMUM_STACK = 1 / MAXIMUM_STACK;
-const NUMBER_OF_COLUMN = 2;
 
-const RATIO = .5;
-const LOWER_BOUND = 1 * HEIGHT;
-const HIGHER_BOUND = 0.1 * HEIGHT;
+const AMPLITUDE_MIN = 50;
+const AMPLITUDE = 200;
+const SPEED_MIN = 0.0005;
+const SPEED_RANGE = 0.0005;
+
+const RATIO = .4;
 
 const SCROLL_SPEED = 1;
 
@@ -221,3 +223,6 @@ const JUMP_FORCE = 3.45;
 const WEIGHT = 100;
 const AIR_FRICTION = 0.03;
 const GROUND_FRICTION = 0.0035;
+
+const LOWER_BOUND = 1 * HEIGHT;
+const HIGHER_BOUND = 0.05 * HEIGHT;
