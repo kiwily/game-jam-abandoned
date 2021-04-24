@@ -1,5 +1,7 @@
 const EXPLOSION_STRENGTH = 0.03;
-const PLAYERS_ASSETS = [{
+
+const PLAYERS_ASSETS = {
+  '#00ff00': {
   stand: [
     "./assets/jumperpack_kenney/PNG/Players/bunny1_stand.png",
     "./assets/jumperpack_kenney/PNG/Players/bunny1_stand.png"
@@ -20,7 +22,8 @@ const PLAYERS_ASSETS = [{
     "./assets/jumperpack_kenney/PNG/Players/bunny1_jump.png",
     "./assets/jumperpack_kenney/PNG/Players/bunny1_jump.png"
   ]
-},{
+},
+'#0b000': {
   stand: [
     "./assets/jumperpack_kenney/PNG/Players/bunny2_ready.png",
     "./assets/jumperpack_kenney/PNG/Players/bunny2_stand.png"
@@ -41,7 +44,18 @@ const PLAYERS_ASSETS = [{
     "./assets/jumperpack_kenney/PNG/Players/bunny2_jump.png",
     "./assets/jumperpack_kenney/PNG/Players/bunny2_jump.png"
   ]
-}];
+}};
+const COLORS = Object.keys(PLAYERS_ASSETS);
+
+let currentColorId = 0
+function NEXT_AVAILABLE_COLOR(){
+  currentColorId ++;
+  if (currentColorId >= COLORS.length){
+    currentColorId = 0;
+  }
+  return COLORS[currentColorId];
+}
+
 const KEY_DICT = {
     38: {
         "direction": "UP"

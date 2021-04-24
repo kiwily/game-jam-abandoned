@@ -4,7 +4,7 @@ socket.emit("new client", "name");
 
 
 let assets = {};
-let PLAYERS_COLOR;
+let COLOR_FROM_ID;
 
 socket.on("connect id", function(data) {
     PLAYER_ID = data.playerId;
@@ -45,7 +45,7 @@ function renderUlScore() {
 
       liItem.appendChild(content);
 
-      liItem.style.color = PLAYERS_COLOR[i];
+      liItem.style.color = COLOR_FROM_ID[key];
       ulScore.appendChild(liItem);
     });
 }
@@ -55,8 +55,8 @@ function renderUlScore() {
 // Initialisation for organizing objects
 socket.on("client update", function(data) {
     // Updating players
-    PLAYERS_SCORES_LOST = data.players_scores_lost;
-    PLAYERS_COLOR = data.players_color;
+    PLAYERS_SCORES_LOST = data.playersScoresLost;
+    COLOR_FROM_ID = data.colorFromId;
     renderUlScore();
 
     assetsVerified = Object.create(assets);

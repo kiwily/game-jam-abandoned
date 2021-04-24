@@ -14,7 +14,7 @@ function renderUlScore() {
 
     liItem.appendChild(content);
 
-    liItem.style.color = PLAYERS_COLOR[i];
+    liItem.style.color = COLOR_FROM_ID[key];
     ulScore.appendChild(liItem);
   });
 }

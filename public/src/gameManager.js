@@ -1,15 +1,14 @@
 const PLAYERS_EVENT_TO_ID = {};
 const PLAYERS_ID_TO_EVENT = {};
 const PLAYERS_SCORES_LOST = {};
-const PLAYERS_COLOR = {};
-const PLAYERS_OBJECT = {}
-let PLAYERS_COLOR_LENGTH = PLAYERS_COLOR.length;
+const PLAYERS_OBJECT = {};
+const COLOR_FROM_ID = {};
 
 
 function addPlayer(playerId) {
     PLAYERS_EVENT_TO_ID['key-event-' + playerId] = playerId;
     PLAYERS_ID_TO_EVENT[playerId] = 'key-event-' + playerId;
-    PLAYERS_COLOR[playerId] = 'blue';
+    COLOR_FROM_ID[playerId] = NEXT_AVAILABLE_COLOR();
     PLAYERS_SCORES_LOST[playerId] = 0;
     const player = Bunny(400, 200, PLAYERS_ID_TO_EVENT[playerId], playerId);
     PLAYERS_OBJECT[playerId] = player;
@@ -92,10 +91,7 @@ function GameManager() {
   // Listen for new/old player
   socket.on("host connect id", (data) => {
     const newPlayerId = data.newPlayerId;
-
     addPlayer(newPlayerId);
-
-    PLAYERS_COLOR_LENGTH = PLAYERS_COLOR.length;
   });
 
   socket.on("host disconnect id", (data) => {
@@ -104,10 +100,8 @@ function GameManager() {
 
     delete PLAYERS_EVENT_TO_ID['key-event-' + oldPlayerId];
     delete PLAYERS_ID_TO_EVENT[oldPlayerId];
-    delete PLAYERS_COLOR[oldPlayerId];
     delete PLAYERS_SCORES_LOST[oldPlayerId];
-
-    PLAYERS_COLOR_LENGTH = PLAYERS_COLOR.length;
+    delete COLOR_FROM_ID[oldPlayerId];
   });
 
   // Collisions
@@ -129,9 +123,9 @@ function GameManager() {
     };
 
     socket.emit("host update", {
-      players_scores_lost: PLAYERS_SCORES_LOST,
-      players_color: PLAYERS_COLOR,
-      objects: Composite.allBodies(engine.world).map((item, i) => (
+        colorFromId: COLOR_FROM_ID,
+        playersScoresLost: PLAYERS_SCORES_LOST,
+        objects: Composite.allBodies(engine.world).map((item, i) => (
         {
           id: item.id,
           sprite: item.render.sprite,
