@@ -20,8 +20,8 @@ function Switcher(players) {
         console.log("SWITCH", x, y)
         body.position.x = 400;
         body.position.y = 200;
-    }
-
+    };
+    
     // Check collisions to create a switch
     Events.on(engine, 'collisionStart', function(event) {
         var aElm = event.pairs[0].bodyA.label;
@@ -31,11 +31,6 @@ function Switcher(players) {
             reposition()
         }
     });
-    // Periodic update for repositionning
-    Events.on(engine, 'beforeUpdate', function(event) {
-        if (body.position.y > HEIGHT){
-            reposition()
-        }
-    });
+
     return body;
 };
