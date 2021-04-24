@@ -30,7 +30,7 @@ function Square(x_init, y_init, playerEvent, cId) {
     // Event for key pressed
     window.addEventListener(playerEvent, (e) => move(e.detail.direction, e.detail.triggered));
 
-    window.addEventListener('SWITCH', function (e) {
+    window.addEventListener('switch', function (e) {
         colorId ++;
         if (colorId >= PLAYER_COLORS_LENGTH){
             colorId = 0;
@@ -63,12 +63,13 @@ function Square(x_init, y_init, playerEvent, cId) {
         }
         // Sortie en bas
         if (body.position.y < -30){
-            window.dispatchEvent(new CustomEvent("LOST", { 
+            window.dispatchEvent(new CustomEvent("lost", { 
                 bubbles: true,
                 detail:{
                     player: colorId,
                 }
             }));
+            Body.setPosition(body, {x: body.position.x, y: -40});
         }
         // Periodic update for fluid movements
         let xForce = 0;

@@ -26,7 +26,7 @@ function Switcher(players) {
         var bElm = event.pairs[0].bodyB.label;
         console.log("collision", aElm,bElm)
         if ((aElm === body.label && players.includes(bElm)) || (players.includes(aElm) && bElm === body.label)){
-            window.dispatchEvent(new Event("SWITCH"))
+            window.dispatchEvent(new Event("switch"))
             reposition()
         }
     });

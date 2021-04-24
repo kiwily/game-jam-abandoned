@@ -37,7 +37,7 @@ const Controler = (playerEvents) => {
     let playerEvent = [...playerEvents];
 
     // Switch commands during a switch event
-    window.addEventListener('SWITCH', function (e) {
+    window.addEventListener('switch', function (e) {
         playerEvent = [playerEvent[1], playerEvent[0]]
     });
 
