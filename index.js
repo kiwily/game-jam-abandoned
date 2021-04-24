@@ -27,15 +27,15 @@ app.get('/', function (req, res) {
     }
 });
 
-app.get('/host/', function (req, res) {
+app.get('/host', function (req, res) {
     res.sendFile('host.html', {root: __dirname});
 });
 
-app.get('/client/', function (req, res) {
+app.get('/client', function (req, res) {
     res.sendFile('client.html', {root: __dirname});
 });
 
-app.get('/message/', function (req, res) {
+app.get('/message', function (req, res) {
     res.sendFile('message.html', {root: __dirname});
 });
 

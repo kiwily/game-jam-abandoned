@@ -1,3 +1,6 @@
+// Active Socket First
+const socket = io();
+
 const WIDTH = 800;
 const HEIGHT = 800;
 
