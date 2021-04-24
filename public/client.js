@@ -4,9 +4,7 @@ socket.emit("new client", "name");
 
 
 let assets = {};
-let PLAYER_ID;
 let PLAYERS_ID;
-let PLAYERS_LOST;
 let PLAYERS_COLOR;
 
 socket.on("connect id", function(data) {
@@ -16,7 +14,7 @@ socket.on("connect id", function(data) {
 // Dispatch key pressed
 window.addEventListener('keydown', function (e) {
     const keyCode = e?.keyCode || null;
-    if (action){
+    if (keyCode){
         socket.emit("client keyboard", {
             playerId: PLAYER_ID,
             keyDown: true,
@@ -28,7 +26,7 @@ window.addEventListener('keydown', function (e) {
 // Dispatch key released
 window.addEventListener('keydown', function (e) {
     const keyCode = e?.keyCode || null;
-    if (action){
+    if (keyCode){
         socket.emit("client keyboard", {
             playerId: PLAYER_ID,
             keyDown: false,

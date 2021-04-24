@@ -93,6 +93,7 @@ io.on("connection", (socket) => {
       socket.broadcast.emit("host quit")
     } else {
       USER_POOL[socket.id] = false;
+      io.emit("host disconnect id", {oldPlayerId: socket.id});
     };
   });
 

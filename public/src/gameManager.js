@@ -1,13 +1,21 @@
 const PLAYERS_ID = [PLAYER_ID];
-const PLAYERS_EVENT = {PLAYER_ID:'key-event-' + PLAYER_ID}; // Pas PLAYER_ID en vrai
-const PLAYERS_COLOR = {PLAYER_ID:'blue'}
+const PLAYERS_EVENT = {};
+PLAYERS_EVENT['key-event-' + PLAYER_ID] = PLAYER_ID
+const PLAYERS_COLOR = {PLAYER_ID:'blue'};
+const PLAYERS_OBJECT = {}
 let PLAYERS_COLOR_LENGTH = PLAYERS_COLOR.length;
 
 
 
 function GameManager() {
   function addPlayer(playerId) {
-    Composite.add(engine.world, Square(400, 200, PLAYERS_EVENT[playerId], playerId));
+    const player = Square(400, 200, PLAYERS_EVENT[playerId], playerId);
+    PLAYERS_OBJECT[playerId] = player;
+    Composite.add(engine.world, player);
+  };
+
+  function removePlayer(playerId) {
+    Composite.remove(engine.world, PLAYERS_OBJECT[playerId]);
   };
 
 
@@ -28,12 +36,24 @@ function GameManager() {
   // Listen for new/old player
   socket.on("host connect id", (data) => {
     const newPlayerId = data.newPlayerId;
+    addPlayer(newPlayerId);
+
     PLAYERS_ID.push(newPlayerId);
-    PLAYERS_EVENT[newPlayerId] = 'key-event-' + PLAYER_ID;
+    PLAYERS_EVENT['key-event-' + PLAYER_ID] = newPlayerId;
     PLAYERS_COLOR[newPlayerId] = 'blue';
 
     PLAYERS_COLOR_LENGTH = PLAYERS_COLOR.length;
-    addPlayer(newPlayerId);
+  });
+
+  socket.on("host disconnect id", (data) => {
+    const oldPlayerId = data.oldPlayerId;
+    removePlayer(oldPlayerId);
+
+    delete PLAYERS_ID.oldPlayerId;
+    delete PLAYERS_EVENT['key-event-' + PLAYER_ID];
+    delete PLAYERS_COLOR[oldPlayerId];
+
+    PLAYERS_COLOR_LENGTH = PLAYERS_COLOR.length;
   });
 
   // Collission

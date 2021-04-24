@@ -1,5 +1,4 @@
 const EXPLOSION_STRENGTH = 0.03;
-const PLAYERS_LOST = {};
 const PLAYERS_ASSETS = [{
   stand: [
     "./assets/jumperpack_kenney/PNG/Players/bunny1_stand.png",
@@ -77,18 +76,18 @@ const TERRAIN_ASSETS = {
     "../assets/jumperpack_kenney/PNG/Environment/ground_grass_broken.png": {w: 380, h: 94},
 };
 const KEY_TERRAIN_ASSETS = Object.keys(TERRAIN_ASSETS);
- 
+
 
 const WIDTH = 800;
 const HEIGHT = 800;
 
- 
+
 const MAXIMUM_STACK = 7;
 const INV_MAXIMUM_STACK = 1 / MAXIMUM_STACK;
 const NUMBER_OF_COLUMN = 2;
- 
+
 const RATIO = .5;
 const LOWER_BOUND = 1 * HEIGHT;
 const HIGHER_BOUND = 0.1 * HEIGHT;
- 
+
 const SCROLL_SPEED = 1;

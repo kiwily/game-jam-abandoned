@@ -2,6 +2,7 @@
 const socket = io();
 
 let PLAYER_ID = null;
+let PLAYERS_LOST = {};
 socket.on("connect id", (data) => {
   PLAYER_ID = data.playerId;
 });
