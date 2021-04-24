@@ -14,7 +14,7 @@ function GameManager() {
   Composite.add(engine.world, Object.values(squares));
   Controler(player1Event, player2Event)
 
-  
+
   // run the renderer
   Render.run(render);
   
