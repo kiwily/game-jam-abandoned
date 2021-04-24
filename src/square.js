@@ -12,7 +12,6 @@ const DEFAULT_MOVING = {
 
 function Square(x_init, y_init, playerEvent, cId, assets) {
     let colorId = cId;
-    let currentAssetTime = 0;
     // Map for fluid movements
     let isMoving = Object.create(DEFAULT_MOVING);
     // Instantiating the rectangle with its color
@@ -22,7 +21,7 @@ function Square(x_init, y_init, playerEvent, cId, assets) {
             fillStyle: PLAYERS_COLOR[colorId],
             lineWidth: 3,
             sprite: {
-                texture: "./assets/jumperpack_kenney/PNG/Players/bunny1_ready.png",
+                texture: assets["stand"][0],
                 xScale: 0.18,
                 yScale: 0.18
             }
@@ -57,7 +56,8 @@ function Square(x_init, y_init, playerEvent, cId, assets) {
     });
 
     Events.on(engine, 'beforeUpdate', function(event) {
-        // const t = Math.floor(currentAssetTime/10);
+        //currentAssetTime
+        //const t = Math.floor(currentAssetTime/10);
         // Sortie sur les bords
         if (body.position.x < -5){
             Body.setPosition(body, {x: WIDTH + 2, y: body.position.y});

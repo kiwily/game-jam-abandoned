@@ -1,37 +1,37 @@
 const PLAYERS_EVENT = ["PLAYER_1_EVENT", "PLAYER_2_EVENT"];
 const PLAYERS_ASSETS = [{
         stand: [
-            "./assets/jumperpack_kenny/PNG/Players/bunny1_ready.png",
-            "./assets/jumperpack_kenny/PNG/Players/bunny1_stand.png"
+            "./assets/jumperpack_kenney/PNG/Players/bunny1_stand.png",
+            "./assets/jumperpack_kenney/PNG/Players/bunny1_stand.png"
         ],
         walk: [
-            "./assets/jumperpack_kenny/PNG/Players/bunny1_walk1.png",
-            "./assets/jumperpack_kenny/PNG/Players/bunny1_walk2.png"
+            "./assets/jumperpack_kenney/PNG/Players/bunny1_walk1.png",
+            "./assets/jumperpack_kenney/PNG/Players/bunny1_walk2.png"
         ],
         hurt: [
-            "./assets/jumperpack_kenny/PNG/Players/bunny1_hurt.png",
-            "./assets/jumperpack_kenny/PNG/Players/bunny1_hurt.png"
+            "./assets/jumperpack_kenney/PNG/Players/bunny1_hurt.png",
+            "./assets/jumperpack_kenney/PNG/Players/bunny1_hurt.png"
         ],
         jump: [
-            "./assets/jumperpack_kenny/PNG/Players/bunny1_jump.png",
-            "./assets/jumperpack_kenny/PNG/Players/bunny1_jump.png"
+            "./assets/jumperpack_kenney/PNG/Players/bunny1_jump.png",
+            "./assets/jumperpack_kenney/PNG/Players/bunny1_jump.png"
         ]
     },{
         stand: [
-            "./assets/jumperpack_kenny/PNG/Players/bunny2_ready.png",
-            "./assets/jumperpack_kenny/PNG/Players/bunny1_stand.png"
+            "./assets/jumperpack_kenney/PNG/Players/bunny2_ready.png",
+            "./assets/jumperpack_kenney/PNG/Players/bunny2_stand.png"
         ],
         walk: [
-            "./assets/jumperpack_kenny/PNG/Players/bunny2_walk1.png",
-            "./assets/jumperpack_kenny/PNG/Players/bunny1_walk2.png"
+            "./assets/jumperpack_kenney/PNG/Players/bunny2_walk1.png",
+            "./assets/jumperpack_kenney/PNG/Players/bunny2_walk2.png"
         ],
         hurt: [
-            "./assets/jumperpack_kenny/PNG/Players/bunny2_hurt.png",
-            "./assets/jumperpack_kenny/PNG/Players/bunny2_hurt.png"
+            "./assets/jumperpack_kenney/PNG/Players/bunny2_hurt.png",
+            "./assets/jumperpack_kenney/PNG/Players/bunny2_hurt.png"
         ],
         jump: [
-            "./assets/jumperpack_kenny/PNG/Players/bunny2_jump.png",
-            "./assets/jumperpack_kenny/PNG/Players/bunny2_jump.png"
+            "./assets/jumperpack_kenney/PNG/Players/bunny2_jump.png",
+            "./assets/jumperpack_kenney/PNG/Players/bunny2_jump.png"
         ]
     }];
 const PLAYERS_COLOR = ["#000eff", "#c00000"];
