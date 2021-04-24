@@ -31,11 +31,6 @@ function Switcher(players) {
             reposition()
         }
     });
-    // Periodic update for repositionning
-    Events.on(engine, 'beforeUpdate', function(event) {
-        if (body.position.y > HEIGHT){
-            reposition()
-        }
-    });
+
     return body;
 };

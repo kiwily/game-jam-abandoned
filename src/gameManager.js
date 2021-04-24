@@ -23,20 +23,16 @@ function GameManager() {
     Composite.add(engine.world, Object.values(objects));
 
     Controler(player1Event, player2Event)
-
-    // run the renderer
-    Render.run(render);
-    
-    // create runner
-    const runner = Runner.create();
-    loop()
 };
 
 GameManager();
 
 
+// run the renderer
+Render.run(render);
+
+// create runner
+var runner = Runner.create();
+
 // run the engine
-function loop() {
-    Engine.update(engine, 1000/60)
-    requestAnimationFrame(loop);
-}
+Runner.run(runner, engine);
