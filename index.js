@@ -9,7 +9,9 @@ const Engine = Matter.Engine,
     Body = Matter.Body,
     Bodies = Matter.Bodies,
     Vector = Matter.Vector,
-    Composite = Matter.Composite;
+    Common = Matter.Common,
+    Composite = Matter.Composite,
+    Composites = Matter.Composites;
 
 // create an engine
 const engine = Engine.create();

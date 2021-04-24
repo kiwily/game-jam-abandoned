@@ -70,5 +70,9 @@ body {
 /*END RESETS*/
 /* GLOBAL STYLES */
 canvas {
-  border: medium solid black
+  border: medium solid black;
+}
+
+body {
+  overflow-y: hidden;
 }
