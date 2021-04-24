@@ -17,7 +17,12 @@ function addPlayer(playerId) {
 };
 
 function removePlayer(playerId) {
-  Composite.remove(engine.world, PLAYERS_OBJECT[playerId]);
+    Composite.remove(engine.world, PLAYERS_OBJECT[playerId]);
+    delete PLAYERS_EVENT_TO_ID['key-event-' + playerId];
+    delete PLAYERS_ID_TO_EVENT[playerId];
+    delete PLAYERS_SCORES_LOST[playerId];
+    delete COLOR_FROM_ID[playerId];
+    delete PLAYERS_OBJECT[playerId];
 };
 
 function explosionAndJump(pair) {
@@ -97,11 +102,6 @@ function GameManager() {
   socket.on("host disconnect id", (data) => {
     const oldPlayerId = data.oldPlayerId;
     removePlayer(oldPlayerId);
-
-    delete PLAYERS_EVENT_TO_ID['key-event-' + oldPlayerId];
-    delete PLAYERS_ID_TO_EVENT[oldPlayerId];
-    delete PLAYERS_SCORES_LOST[oldPlayerId];
-    delete COLOR_FROM_ID[oldPlayerId];
   });
 
   // Collisions

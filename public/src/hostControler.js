@@ -2,7 +2,7 @@
 function HostControler() {
     // Switch commands during a switch event
     window.addEventListener('switch', function (e) {
-        const shuffledPlayersEventValues = PLAYERS_ID_TO_EVENT.values.sort((a, b) => 0.5 - Math.random());
+        const shuffledPlayersEventValues = Object.values(PLAYERS_ID_TO_EVENT).sort((a, b) => 0.5 - Math.random());
         Object.keys(PLAYERS_ID_TO_EVENT).forEach((key, i) => {
             PLAYERS_ID_TO_EVENT[key] = shuffledPlayersEventValues[i];
             PLAYERS_EVENT_TO_ID[shuffledPlayersEventValues[i]] = key;
