@@ -1,35 +1,15 @@
 
 const keyDic = {
-    87: {
-        "player": 0,
-        "direction": "UP"
-    },
-    65: {
-        "player": 0,
-        "direction": "LEFT"
-    },
-    68: {
-        "player": 0,
-        "direction": "RIGHT"
-    },
-    83: {
-        "player": 0,
-        "direction": "DOWN"
-    },
     38: {
-        "player": 1,
         "direction": "UP"
     },
     37: {
-        "player": 1,
         "direction": "LEFT"
     },
     39: {
-        "player": 1,
         "direction": "RIGHT"
     },
     40: {
-        "player": 1,
         "direction": "DOWN"
     }
 }
@@ -42,24 +22,28 @@ const Controler = (playerEvents) => {
     });
 
     // Function to fire the right player's movement
-    function handleKey(e, triggered){
-        const { player, direction } = keyDic[e.keyCode] || [null, null]
-        window.dispatchEvent(new CustomEvent(playerEvent[player], { 
+    function handleKey(playerId, keyCode, triggered){
+        const { player, direction } = keyDic[keyCode] || [null, null]
+        window.dispatchEvent(new CustomEvent(playerEvent[playerId], {
             bubbles: true,
             detail:{
                 direction: direction,
                 triggered
-            } 
+            }
         }));
     }
 
     // Dispatch key pressed
     window.addEventListener('keydown', function (e) {
-        handleKey(e, true)
+        handleKey(playerId, e.keyCode, true)
     }, false);
 
     // Dispatch key released
     window.addEventListener('keyup', function (e) {
-        handleKey(e, false)
+        handleKey(playerId, e.keyCode, false)
     }, false);
+
+    socket.on("host client keyboard", (e) => {
+      handleKey(e.playerId, e.keyCode, e.keyDown)
+    });
 };

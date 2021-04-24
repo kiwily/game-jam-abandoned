@@ -79,20 +79,31 @@ io.on("connection", (socket) => {
   if (HOST === null) {
     HOST = socket.id;
     console.log("Set Host to", socket.id);
+  } {
+    USER_POOL[socket.id] = true;
   };
+
+  socket.emit("connect id", {playerId: socket.id})
 
   socket.on("disconnect", () => {
     console.log("user disconnected", socket.id);
     if (HOST === socket.id) {
       HOST = null;
       socket.broadcast.emit("host quit")
+    } else {
+      USER_POOL[socket.id] = false;
     };
   });
 
   socket.on("host update", (data) => {
     //console.log(">>> ", data);
+    // socket.broadcast.emit("client update", data);
     io.emit("client update", data);
   });
+
+  socket.on("client keyboard", (e) => {
+    io.emit("host client keyboard", e);
+  })
 });
 
 server.listen(port, () => {
