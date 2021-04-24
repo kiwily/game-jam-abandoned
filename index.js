@@ -1,5 +1,5 @@
 const WIDTH = 800;
-const HEIGHT = 800;
+const HEIGHT = 200;
 
 // module aliases
 const Engine = Matter.Engine,
