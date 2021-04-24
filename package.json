@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon --exec npm run server",
-    "server": "npx http-server",
+    "server": "npx http-server -p 80",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
