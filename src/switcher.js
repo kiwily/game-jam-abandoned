@@ -18,8 +18,8 @@ function Switcher(players) {
         const x = 50 + Math.floor(Math.random() * (WIDTH - 100))
         const y = 50 + Math.floor(Math.random() * (HEIGHT - 100))
         console.log("SWITCH", x, y)
-        body.position.x = 400;
-        body.position.y = 200;
+        body.position.x = x;
+        body.position.y = y;
     }
 
     // Check collisions to create a switch

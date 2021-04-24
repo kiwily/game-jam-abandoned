@@ -35,6 +35,12 @@ function Square(x_init, y_init, playerEvent, color) {
             colorId = 0;
         }
         body.render.fillStyle = color[colorId];
+        isMoving = {
+            "UP": false,
+            "DOWN": false,
+            "RIGHT": false,
+            "LEFT": false,
+        }
     });
 
     // Check collisions to allow a new jump
