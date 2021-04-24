@@ -40,9 +40,9 @@ function renderUlScore() {
       ulScore.removeChild(ulScore.firstChild);
     };
 
-    PLAYERS_ID.forEach((item, i) => {
+    Object.keys(PLAYERS_SCORES_LOST).forEach((key, i) => {
       const liItem = document.createElement("li");
-      const content = document.createTextNode(`Player ${item}: ${PLAYERS_LOST[item]}`);
+      const content = document.createTextNode(`Player ${key}: ${PLAYERS_SCORES_LOST[key]}`);
 
       liItem.appendChild(content);
 
@@ -57,7 +57,7 @@ function renderUlScore() {
 socket.on("client update", function(data) {
     // Updating players
     PLAYERS_ID = data.players_id;
-    PLAYERS_LOST = data.players_lost;
+    PLAYERS_SCORES_LOST = data.players_scores_lost;
     PLAYERS_COLOR = data.players_color;
     renderUlScore();
 

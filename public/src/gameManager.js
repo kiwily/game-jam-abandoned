@@ -109,7 +109,7 @@ function GameManager() {
   function updateServer(timestamp) {
     socket.emit("host update", {
       players_id: PLAYERS_ID,
-      players_lost: PLAYERS_SCORES_LOST,
+      players_scores_lost: PLAYERS_SCORES_LOST,
       players_color: PLAYERS_COLOR,
       objects: Composite.allBodies(engine.world).map((item, i) => (
         {

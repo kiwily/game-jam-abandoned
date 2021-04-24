@@ -8,9 +8,9 @@ function renderUlScore() {
     ulScore.removeChild(ulScore.firstChild);
   };
 
-  PLAYERS_ID.forEach((item, i) => {
+  Object.keys(PLAYERS_SCORES_LOST).forEach((key, i) => {
     const liItem = document.createElement("li");
-    const content = document.createTextNode(`Player ${item}: ${PLAYERS_LOST[item]}`);
+    const content = document.createTextNode(`Player ${key}: ${PLAYERS_SCORES_LOST[key]}`);
 
     liItem.appendChild(content);
 
