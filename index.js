@@ -1,5 +1,5 @@
 const WIDTH = 800;
-const HEIGHT = 200;
+const HEIGHT = 800;
 
 // module aliases
 const Engine = Matter.Engine,
@@ -23,7 +23,7 @@ const render = Render.create({
     options: {
       width: WIDTH,
       height: HEIGHT,
-      background: 'white',
+      background: 'url(assets/jumperpack_kenney/PNG/Background/bg_layer1.png)',
       wireframeBackground: 'white',
       wireframes: false
     }

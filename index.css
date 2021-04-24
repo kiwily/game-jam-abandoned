@@ -76,6 +76,8 @@ div#game {
 
 div#game canvas {
   border: medium solid black;
+
+  background-image: url(assets/jumperpack_kenney/PNG/Background/bg_layer1.png);
 }
 
 body {

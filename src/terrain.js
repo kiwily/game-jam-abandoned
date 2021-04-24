@@ -1,10 +1,19 @@
+// ASSET SIZE
+const TERRAIN_ASSETS = {
+   "../assets/jumperpack_kenney/PNG/Environment/ground_grass_small.png": {w: 201, h: 100},
+   "../assets/jumperpack_kenney/PNG/Environment/ground_grass.png": {w: 380, h: 94},
+   "../assets/jumperpack_kenney/PNG/Environment/ground_grass_small_broken.png": {w: 200, h: 100},
+   "../assets/jumperpack_kenney/PNG/Environment/ground_grass_broken.png": {w: 380, h: 94},
+}
+
+const KEY_TERRAIN_ASSETS = Object.keys(TERRAIN_ASSETS);
 // src/terrain.js
 
-const MAXIMUM_STACK = 3;
+const MAXIMUM_STACK = 7;
 const INV_MAXIMUM_STACK = 1 / MAXIMUM_STACK;
 const NUMBER_OF_COLUMN = 2;
 
-const PLATFORM_HEIGHT = 6;
+const RATIO = .5;
 
 const LOWER_BOUND = 1 * HEIGHT;
 const HIGHER_BOUND = 0.1 * HEIGHT;
@@ -18,8 +27,12 @@ function Terrain() {
     const x = (0.5 * (rowr % 2) + 0.5 * (0.2 + 0.6 * Math.random())) * WIDTH;
     const y = HIGHER_BOUND + (LOWER_BOUND - HIGHER_BOUND) * (rowr * INV_MAXIMUM_STACK);
 
-    const width = 200 + 100 * Math.random();
-    const height = PLATFORM_HEIGHT;
+    const assetLink = KEY_TERRAIN_ASSETS[ KEY_TERRAIN_ASSETS.length * Math.random() << 0];
+    const {w, h } = TERRAIN_ASSETS[assetLink];
+
+    const width = RATIO * w;
+    const height = RATIO * h;
+    console.log("Asset", assetLink, w, h);
 
     const angle = Math.random() * Math.PI * 2;
     const amplitude = 50 + 100 * Math.random();
@@ -35,7 +48,13 @@ function Terrain() {
     return (
       Bodies.rectangle(x, y, width , height, {
         isStatic: true,
-        
+        render: {
+          sprite: {
+            texture: assetLink,
+            xScale: RATIO,
+            yScale: RATIO,
+          }
+        }
       })
     );
   });
