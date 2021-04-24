@@ -1,6 +1,6 @@
 // src/terrain.js
 
-const MAXIMUM_STACK = 5
+const MAXIMUM_STACK = 32
 const INV_MAXIMUM_STACK = 1 / MAXIMUM_STACK
 const NUMBER_OF_COLUMN = 2
 

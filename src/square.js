@@ -10,15 +10,16 @@ function Square(x_init, y_init, playerEvent, color) {
         "LEFT": false,
     };
     // Instantiating the rectangle with its color
-    const body = Bodies.rectangle(x_init, y_init, 80, 80, {
+    const body = Bodies.rectangle(x_init, y_init, 20, 20, {
         label: playerEvent,
         render: {
-            fillStyle: color,
+            fillStyle: color[0],
             lineWidth: 3
        }
     });
-    Body.setMass(body, 10);
-    let jumpable = false
+    Body.setMass(body, 15);
+    let jumpable = false;
+    let colorId = 0;
 
     // Update movement
     function move(to, triggered) {
@@ -27,6 +28,14 @@ function Square(x_init, y_init, playerEvent, color) {
 
     // Event for key pressed
     window.addEventListener(playerEvent, (e) => move(e.detail.direction, e.detail.triggered));
+
+    window.addEventListener('SWITCH', function (e) {
+        colorId ++;
+        if (colorId >= color.length){
+            colorId = 0;
+        }
+        body.render.fillStyle = color[colorId];
+    });
 
     // Check collisions to allow a new jump
     Events.on(engine, 'collisionStart', function(event) {
@@ -52,10 +61,10 @@ function Square(x_init, y_init, playerEvent, color) {
             yForce = 0.01;
         }
         if (isMoving["RIGHT"]){
-            xForce = 0.01;
+            xForce = 0.015;
         }
         if (isMoving["LEFT"]){
-            xForce = -0.01;
+            xForce = -0.015;
         }
         Body.applyForce(body, body.position, {x: xForce, y: yForce});
     });

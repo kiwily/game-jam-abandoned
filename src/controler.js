@@ -2,23 +2,19 @@
 const keyDic = {
     87: {
         "player": 1,
-        "direction": "UP",
-        "undirection": "DOWN"
+        "direction": "UP"
     },
     65: {
         "player": 1,
-        "direction": "LEFT",
-        "undirection": "RIGHT"
+        "direction": "LEFT"
     },
     68: {
         "player": 1,
-        "direction": "RIGHT",
-        "undirection": "LEFT"
+        "direction": "RIGHT"
     },
     83: {
         "player": 1,
-        "direction": "DOWN",
-        "undirection": "UP"
+        "direction": "DOWN"
     },
     81: {
         "player": 1,
@@ -26,23 +22,19 @@ const keyDic = {
     },
     38: {
         "player": 2,
-        "direction": "UP",
-        "undirection": "DOWN"
+        "direction": "UP"
     },
     37: {
         "player": 2,
-        "direction": "LEFT",
-        "undirection": "RIGHT"
+        "direction": "LEFT"
     },
     39: {
         "player": 2,
-        "direction": "RIGHT",
-        "undirection": "LEFT"
+        "direction": "RIGHT"
     },
     40: {
         "player": 2,
-        "direction": "DOWN",
-        "undirection": "UP"
+        "direction": "DOWN"
     },
     190: {
         "player": 2,
@@ -56,6 +48,8 @@ const Controler = (player1Event, player2Event) => {
         // console.log(player, direction)
 
         if (direction === "SWITCH") {
+            console.log("SWITCH")
+            window.dispatchEvent(new Event("SWITCH"))
             [player1Event, player2Event] = [player2Event, player1Event]
         } else {
             if (player === 1) {
@@ -79,25 +73,22 @@ const Controler = (player1Event, player2Event) => {
     }, false);
     window.addEventListener('keyup', function (e) {
         const { player, direction } = keyDic[e.keyCode]
-        
-        if (direction != "SWITCH") {
-            if (player === 1) {
-                window.dispatchEvent(new CustomEvent(player1Event, { 
-                    bubbles: true,
-                    detail:{
-                        direction: direction,
-                        triggered: false
-                    } 
-                }));
-            } else if (player === 2) {
-                window.dispatchEvent(new CustomEvent(player2Event, { 
-                    bubbles: true,
-                    detail:{
-                        direction: direction,
-                        triggered: false
-                    } 
-                }));
-            }
+        if (player === 1) {
+            window.dispatchEvent(new CustomEvent(player1Event, { 
+                bubbles: true,
+                detail:{
+                    direction: direction,
+                    triggered: false
+                } 
+            }));
+        } else if (player === 2) {
+            window.dispatchEvent(new CustomEvent(player2Event, { 
+                bubbles: true,
+                detail:{
+                    direction: direction,
+                    triggered: false
+                } 
+            }));
         }
     }, false);
 };
