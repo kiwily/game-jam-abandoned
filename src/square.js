@@ -26,9 +26,19 @@ function Square(x_init, y_init, playerEvent, cId) {
     function move(to, triggered) {
         isMoving[to] = triggered;
     };
+    // Update movement
+    function explose(label, xForce, yForce) {
+        if (body.label === label){
+            isMoving["EXPLOSION"] = true;
+            isMoving["EXPLOSION_X"] = xForce;
+            isMoving["EXPLOSION_Y"] = yForce;
+        }
+    };
 
     // Event for key pressed
     window.addEventListener(playerEvent, (e) => move(e.detail.direction, e.detail.triggered));
+    // Event for explosion
+    window.addEventListener("explosion", (e) => explose(e.detail.label, e.detail.xForce, e.detail.yForce));
 
     window.addEventListener('switch', function (e) {
         colorId ++;
@@ -41,6 +51,9 @@ function Square(x_init, y_init, playerEvent, cId) {
             "DOWN": false,
             "RIGHT": false,
             "LEFT": false,
+            "EXPLOSION": false,
+            "EXPLOSION_X": 0,
+            "EXPLOSION_Y": 0
         }
     });
 
@@ -51,12 +64,6 @@ function Square(x_init, y_init, playerEvent, cId) {
         if (aElm === body.label || bElm === body.label){
             jumpable = true;
         }
-        // if (aElm === body.label || bElm === body.label){
-        //     Body.applyForce(body, body.position, {
-        //         x: (forceMagnitude + Common.random() * forceMagnitude) * Common.choose([1, -1]),
-        //         y: -forceMagnitude + Common.random() * -forceMagnitude
-        //     });
-        // }
     });
 
     Events.on(engine, 'beforeUpdate', function(event) {
@@ -94,6 +101,11 @@ function Square(x_init, y_init, playerEvent, cId) {
         }
         if (isMoving["LEFT"]){
             xForce = -0.015;
+        }
+        if (isMoving["EXPLOSION"]){
+            xForce = isMoving["EXPLOSION_X"];
+            yForce = isMoving["EXPLOSION_Y"];
+            isMoving["EXPLOSION"] = false;
         }
         Body.applyForce(body, body.position, {x: xForce, y: yForce});
     });

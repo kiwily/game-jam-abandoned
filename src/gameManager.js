@@ -2,6 +2,7 @@ const PLAYERS_EVENT = ["PLAYER_1_EVENT", "PLAYER_2_EVENT"];
 const PLAYERS_COLOR = ["#000eff", "#c00000"];
 const PLAYERS_ID = [0, 1];
 const PLAYERS_COLOR_LENGTH = PLAYERS_COLOR.length;
+const EXPLOSION_STRENGTH = 10000;
 
 function GameManager() {
     Composite.add(engine.world, Terrain());
@@ -20,6 +21,30 @@ function GameManager() {
 
     // add all of the bodies to the world
     Composite.add(engine.world, objects);
+
+    // 
+    Events.on(engine, 'collisionStart', function(event) {
+        var elem1 = event.pairs[0].bodyA;
+        var elem2 = event.pairs[0].bodyB;
+        if (PLAYERS_EVENT.includes(elem1.label) && PLAYERS_EVENT.includes(elem2.label)){
+            window.dispatchEvent(new CustomEvent("explosion", { 
+                bubbles: true,
+                detail:{
+                    label: elem1.label,
+                    xForce: -0.03* (elem2.position.x-elem1.position.x),
+                    yForce: -0.03* (elem2.position.y-elem1.position.y)
+                } 
+            }));
+            window.dispatchEvent(new CustomEvent("explosion", { 
+                bubbles: true,
+                detail:{
+                    label: elem2.label,
+                    xForce: 0.03* (elem2.position.x-elem1.position.x),
+                    yForce: 0.03* (elem2.position.y-elem1.position.y)
+                }
+            }));
+        }
+    });
 
 };
 
