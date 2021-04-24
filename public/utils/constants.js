@@ -44,6 +44,116 @@ const PLAYERS_ASSETS = {
     "./assets/jumperpack_kenney/PNG/Players/bunny2_jump.png",
     "./assets/jumperpack_kenney/PNG/Players/bunny2_jump.png"
   ]
+},
+"#672a0f": {
+  stand: [
+    "./assets/jumperpack_kenney/PNG/Players/bunny3_ready.png",
+    "./assets/jumperpack_kenney/PNG/Players/bunny3_stand.png"
+  ],
+  walkLeft: [
+    "./assets/jumperpack_kenney/PNG/Players/bunny3_walk3.png",
+    "./assets/jumperpack_kenney/PNG/Players/bunny3_walk4.png"
+  ],
+  walkRight: [
+    "./assets/jumperpack_kenney/PNG/Players/bunny3_walk1.png",
+    "./assets/jumperpack_kenney/PNG/Players/bunny3_walk2.png"
+  ],
+  hurt: [
+    "./assets/jumperpack_kenney/PNG/Players/bunny3_hurt.png",
+    "./assets/jumperpack_kenney/PNG/Players/bunny3_hurt.png"
+  ],
+  jump: [
+    "./assets/jumperpack_kenney/PNG/Players/bunny3_jump.png",
+    "./assets/jumperpack_kenney/PNG/Players/bunny3_jump.png"
+  ]
+},
+"#4f0a06": {
+  stand: [
+    "./assets/jumperpack_kenney/PNG/Players/bunny4_ready.png",
+    "./assets/jumperpack_kenney/PNG/Players/bunny4_stand.png"
+  ],
+  walkLeft: [
+    "./assets/jumperpack_kenney/PNG/Players/bunny4_walk3.png",
+    "./assets/jumperpack_kenney/PNG/Players/bunny4_walk4.png"
+  ],
+  walkRight: [
+    "./assets/jumperpack_kenney/PNG/Players/bunny4_walk1.png",
+    "./assets/jumperpack_kenney/PNG/Players/bunny4_walk2.png"
+  ],
+  hurt: [
+    "./assets/jumperpack_kenney/PNG/Players/bunny4_hurt.png",
+    "./assets/jumperpack_kenney/PNG/Players/bunny4_hurt.png"
+  ],
+  jump: [
+    "./assets/jumperpack_kenney/PNG/Players/bunny4_jump.png",
+    "./assets/jumperpack_kenney/PNG/Players/bunny4_jump.png"
+  ]
+},
+"#f8d6fc": {
+  stand: [
+    "./assets/jumperpack_kenney/PNG/Players/bunny5_ready.png",
+    "./assets/jumperpack_kenney/PNG/Players/bunny5_stand.png"
+  ],
+  walkLeft: [
+    "./assets/jumperpack_kenney/PNG/Players/bunny5_walk3.png",
+    "./assets/jumperpack_kenney/PNG/Players/bunny5_walk4.png"
+  ],
+  walkRight: [
+    "./assets/jumperpack_kenney/PNG/Players/bunny5_walk1.png",
+    "./assets/jumperpack_kenney/PNG/Players/bunny5_walk2.png"
+  ],
+  hurt: [
+    "./assets/jumperpack_kenney/PNG/Players/bunny5_hurt.png",
+    "./assets/jumperpack_kenney/PNG/Players/bunny5_hurt.png"
+  ],
+  jump: [
+    "./assets/jumperpack_kenney/PNG/Players/bunny5_jump.png",
+    "./assets/jumperpack_kenney/PNG/Players/bunny5_jump.png"
+  ]
+},
+"#849cc4": {
+  stand: [
+    "./assets/jumperpack_kenney/PNG/Players/bunny6_ready.png",
+    "./assets/jumperpack_kenney/PNG/Players/bunny6_stand.png"
+  ],
+  walkLeft: [
+    "./assets/jumperpack_kenney/PNG/Players/bunny6_walk3.png",
+    "./assets/jumperpack_kenney/PNG/Players/bunny6_walk4.png"
+  ],
+  walkRight: [
+    "./assets/jumperpack_kenney/PNG/Players/bunny6_walk1.png",
+    "./assets/jumperpack_kenney/PNG/Players/bunny6_walk2.png"
+  ],
+  hurt: [
+    "./assets/jumperpack_kenney/PNG/Players/bunny6_hurt.png",
+    "./assets/jumperpack_kenney/PNG/Players/bunny6_hurt.png"
+  ],
+  jump: [
+    "./assets/jumperpack_kenney/PNG/Players/bunny6_jump.png",
+    "./assets/jumperpack_kenney/PNG/Players/bunny6_jump.png"
+  ]
+},
+"#b6985c": {
+  stand: [
+    "./assets/jumperpack_kenney/PNG/Players/bunny7_ready.png",
+    "./assets/jumperpack_kenney/PNG/Players/bunny7_stand.png"
+  ],
+  walkLeft: [
+    "./assets/jumperpack_kenney/PNG/Players/bunny7_walk3.png",
+    "./assets/jumperpack_kenney/PNG/Players/bunny7_walk4.png"
+  ],
+  walkRight: [
+    "./assets/jumperpack_kenney/PNG/Players/bunny7_walk1.png",
+    "./assets/jumperpack_kenney/PNG/Players/bunny7_walk2.png"
+  ],
+  hurt: [
+    "./assets/jumperpack_kenney/PNG/Players/bunny7_hurt.png",
+    "./assets/jumperpack_kenney/PNG/Players/bunny7_hurt.png"
+  ],
+  jump: [
+    "./assets/jumperpack_kenney/PNG/Players/bunny7_jump.png",
+    "./assets/jumperpack_kenney/PNG/Players/bunny7_jump.png"
+  ]
 }};
 const COLORS = Object.keys(PLAYERS_ASSETS);
 
