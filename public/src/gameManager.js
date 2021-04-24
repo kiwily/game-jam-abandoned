@@ -70,6 +70,9 @@ function GameManager() {
         var elem1 = event.pairs[0].bodyA;
         var elem2 = event.pairs[0].bodyB;
         if (PLAYERS_EVENT.includes(elem1.label) && PLAYERS_EVENT.includes(elem2.label)){
+            const num = Math.floor(Math.random() * 7 + 1)
+            const audioExplosion = new Audio('./assets/sounds/meow/00' + String(num) + '_meow.wav');
+            audioExplosion.play()
             window.dispatchEvent(new CustomEvent("explosion", { 
                 bubbles: true,
                 detail:{

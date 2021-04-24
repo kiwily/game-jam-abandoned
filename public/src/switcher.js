@@ -28,7 +28,13 @@ function Switcher(players) {
         var aElm = event.pairs[0].bodyA.label;
         var bElm = event.pairs[0].bodyB.label;
         if ((aElm === body.label && players.includes(bElm)) || (players.includes(aElm) && bElm === body.label)){
+            // Son
+            const num = Math.floor(Math.random() * 3 + 1)
+            const audioPower = new Audio('./assets/sounds/power_meter_full/00' + String(num) + '_power-meter-full.wav');
+            audioPower.play()
+            // Event
             window.dispatchEvent(new Event("switch"))
+            // Replace the switcher
             reposition()
         }
     });

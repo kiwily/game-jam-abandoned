@@ -73,12 +73,18 @@ function Square(x_init, y_init, playerEvent, _colorId) {
         }
         // Sortie en bas
         if (body.position.y > HEIGHT + 40){
+            // Son
+            const num = Math.floor(Math.random() * 3 + 1)
+            const audioLost = new Audio('./assets/sounds/we_lost/00' + String(num) + '_we-lost.wav');
+            audioLost.play()
+            // Event lost pour le score
             document.dispatchEvent(new CustomEvent("lost", {
                 bubbles: true,
                 detail:{
                     player: colorId,
                 }
             }));
+            // Remise a 0 de la position
             Body.setPosition(body, {x: WIDTH / 2, y: 40});
             Body.setVelocity(body, {
               x: 0,
@@ -100,9 +106,20 @@ function Square(x_init, y_init, playerEvent, _colorId) {
         }
         if (isMoving["UP"]){
             if (isMoving["JUMPABLE"]){
+                // Sound
+                const num = Math.floor(Math.random() * 7 + 1)
+                let audioJump;
+                if (Math.random() > 0.5){
+                    audioJump = new Audio('./assets/sounds/jump/00' + String(num) + '_jump.wav');
+                } else {
+                    audioJump = new Audio('./assets/sounds/swing/00' + String(num) + '_swing.wav');
+                }
+                audioJump.play()
+                // Sprite movement
                 body.render.sprite.texture = PLAYERS_ASSETS[colorId].jump[t];
                 body.render.sprite.xScale = SCALE;
                 body.render.sprite.yScale = SCALE;
+                // Jump
                 yForce = -0.4;
                 isMoving["JUMPABLE"] = false;
             }
