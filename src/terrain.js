@@ -33,7 +33,10 @@ function Terrain() {
     })
 
     return (
-      Bodies.rectangle(x, y, width , height, { isStatic: true })
+      Bodies.rectangle(x, y, width , height, {
+        isStatic: true,
+        
+      })
     );
   });
 
