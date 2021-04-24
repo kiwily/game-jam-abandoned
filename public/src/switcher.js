@@ -1,4 +1,8 @@
-
+const AUDIO_POWERS = [
+  new Audio('./assets/sounds/power_meter_full/001_power-meter-full.wav'),
+  new Audio('./assets/sounds/power_meter_full/002_power-meter-full.wav'),
+  new Audio('./assets/sounds/power_meter_full/003_power-meter-full.wav'),
+];
 
 function Switcher() {
     // Instantiating the switcher
@@ -20,34 +24,34 @@ function Switcher() {
         const x = 50 + Math.floor(Math.random() * (WIDTH - 100))
         const y = 50 + Math.floor(Math.random() * (HEIGHT - 100))
         switcher.angle = 0;
-        Body.setPosition(switcher, {x, y});
+        Body.setPosition(switcher, {x:x, y:y});
+        Body.setVelocity(switcher, {x:0, y:0});
     }
 
     Body.setMass(switcher, 55);
     setPosition();
 
-    // Check collisions to create a switch
-    Events.on(engine, 'collisionStart', function(event) {
-        // var aElm = event.pairs[0].bodyA.label;
-        // var bElm = event.pairs[0].bodyB.label;
-        // if ((aElm === switcher.label && players.includes(bElm)) || (players.includes(aElm) && bElm === switcher.label)){
-        //     // Son
-        //     const num = Math.floor(Math.random() * 3 + 1)
-        //     const audioPower = new Audio('./assets/sounds/power_meter_full/00' + String(num) + '_power-meter-full.wav');
-        //     audioPower.play()
-        //     // Event
-        //     window.dispatchEvent(new Event("switch"))
-        //     // Replace the switcher
-        //     setPosition()
-        // }
-    });
-
     Events.on(engine, 'beforeUpdate', function(event) {
         Body.rotate(switcher, 0.01);
     });
 
+    function hasBeenTouched(pair) {
+      const bodyA = pair.bodyA;
+      const bodyB = pair.bodyB;
+
+      const otherBody = bodyA === switcher ? bodyB : bodyB === switcher ? bodyA : undefined;
+      if (otherBody === undefined) {
+        return;
+      };
+      // Sound
+      AUDIO_POWERS[Math.floor(Math.random() * AUDIO_POWERS.length)].play();
+      // Switch
+      window.dispatchEvent(new Event("switch"))
+      setPosition()
+    };
+
     return {
       switcher: switcher,
-      listeners: []
+      listeners: [hasBeenTouched]
     };
 };
