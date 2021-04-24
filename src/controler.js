@@ -44,7 +44,7 @@ const keyDic = {
         "direction": "DOWN",
         "undirection": "UP"
     },
-    191: {
+    190: {
         "player": 2,
         "direction": "SWITCH"
     }
@@ -56,7 +56,7 @@ const Controler = (player1Event, player2Event) => {
         // console.log(player, direction)
 
         if (direction === "SWITCH") {
-            window.dispatchEvent(new CustomEvent("SWITCH"));
+            [player1Event, player2Event] = [player2Event, player1Event]
         } else {
             if (player === 1) {
                 window.dispatchEvent(new CustomEvent(player1Event, { 
@@ -80,9 +80,7 @@ const Controler = (player1Event, player2Event) => {
     window.addEventListener('keyup', function (e) {
         const { player, direction } = keyDic[e.keyCode]
         
-        if (direction === "SWITCH") {
-            window.dispatchEvent(new CustomEvent("SWITCH"));
-        } else {
+        if (direction != "SWITCH") {
             if (player === 1) {
                 window.dispatchEvent(new CustomEvent(player1Event, { 
                     bubbles: true,

@@ -21,8 +21,8 @@ const render = Render.create({
     options: {
       width: WIDTH,
       height: HEIGHT,
-      background: 'black',
-      wireframeBackground: 'white'
+      background: 'white',
+      wireframeBackground: 'white',
+      wireframes: false
     }
-    ,
 });
