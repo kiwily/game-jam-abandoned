@@ -7,7 +7,7 @@ function renderUlScore() {
   while (ulScore.firstChild) {
     ulScore.removeChild(ulScore.firstChild);
   };
-
+  const liItems = []
   Object.keys(PLAYERS_SCORES_LOST).forEach((key, i) => {
     const liItem = document.createElement("li");
     const content = document.createTextNode(`Player ${key}: ${PLAYERS_SCORES_LOST[key]}`);
@@ -15,9 +15,13 @@ function renderUlScore() {
     liItem.appendChild(content);
 
     liItem.style.color = COLOR_FROM_ID[key];
-    ulScore.appendChild(liItem);
+    liItems.push([PLAYERS_SCORES_LOST[key], liItem])
   });
-}
+  liItems.sort((a, b) => (a[0] > b[0]));
+  liItems.forEach((item, i) => {
+    ulScore.appendChild(item[1]);
+  });
+};
 
 // // Start game
 // Runner.run(runner, engine);

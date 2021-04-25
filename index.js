@@ -28,12 +28,11 @@ app.use((req, res, next) => {
   next();
 })
 app.get('/', function (req, res) {
-  res.sendFile("index.html", {root: __dirname});
-    /*if (req.isHost) {
-      res.redirect("/host");
-    } else {
-      res.redirect("/client");
-    };*/
+  if (req.isHost) {
+    res.redirect("/host");
+  } else {
+    res.redirect("/client");
+  };
 });
 
 app.get('/host', function (req, res) {

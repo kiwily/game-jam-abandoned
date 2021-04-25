@@ -1,8 +1,17 @@
+// Fisher-Yates shuffle
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
 
 function HostControler() {
     // Switch commands during a switch event
     window.addEventListener('switch', function (e) {
-        const shuffledPlayersEventValues = Object.values(PLAYERS_ID_TO_EVENT).sort((a, b) => 0.5 - Math.random());
+        const shuffledPlayersEventValues = shuffle(Object.values(PLAYERS_ID_TO_EVENT));
         Object.keys(PLAYERS_ID_TO_EVENT).forEach((key, i) => {
             PLAYERS_ID_TO_EVENT[key] = shuffledPlayersEventValues[i];
             PLAYERS_EVENT_TO_ID[shuffledPlayersEventValues[i]] = key;

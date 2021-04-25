@@ -35,7 +35,7 @@ function Bunny(x_init, y_init, playerEvent) {
         render: {
             lineWidth: 3,
             sprite: {
-                texture: PLAYERS_ASSETS[color]["stand"][0],
+                texture: PLAYERS_ASSETS[color]?.stand[0],
                 xScale: SCALE,
                 yScale: SCALE
             }
@@ -62,12 +62,18 @@ function Bunny(x_init, y_init, playerEvent) {
     window.addEventListener("explosion", (e) => explose(e.detail.label, e.detail.xForce, e.detail.yForce));
 
     window.addEventListener('switch', function (e) {
+        if (!PLAYERS_OBJECT[PLAYERS_EVENT_TO_ID[playerEvent]]) {
+          return;
+        }
         color = COLOR_FROM_ID[PLAYERS_EVENT_TO_ID[playerEvent]];
-        body.render.sprite.texture = PLAYERS_ASSETS[color].hurt[0];
+        body.render.sprite.texture = PLAYERS_ASSETS[color]?.hurt[0];
         isMoving = Object.create(DEFAULT_MOVING)
     });
 
     Events.on(engine, 'beforeUpdate', function(event) {
+        if (!PLAYERS_OBJECT[PLAYERS_EVENT_TO_ID[playerEvent]]) {
+          return;
+        }
 
         currentAssetTime ++;
         if (currentAssetTime >= 20){
@@ -108,7 +114,7 @@ function Bunny(x_init, y_init, playerEvent) {
         let xForce = 0;
         let yForce = 0;
         if (isMoving["EXPLOSION"]){
-            body.render.sprite.texture = PLAYERS_ASSETS[color].hurt[t];
+            body.render.sprite.texture = PLAYERS_ASSETS[color]?.hurt[t];
             xForce = isMoving["EXPLOSION_X"];
             yForce = isMoving["EXPLOSION_Y"];
             isMoving["EXPLOSION"] = false;
@@ -119,7 +125,7 @@ function Bunny(x_init, y_init, playerEvent) {
                 const audio = AUDIO_JUMP[Math.floor(Math.random() * AUDIO_JUMP.length)];
                 playCustomAudio(audio);
                 // Sprite movement
-                body.render.sprite.texture = PLAYERS_ASSETS[color].jump[t];
+                body.render.sprite.texture = PLAYERS_ASSETS[color]?.jump[t];
                 body.render.sprite.xScale = SCALE;
                 body.render.sprite.yScale = SCALE;
                 // Jump
@@ -128,19 +134,19 @@ function Bunny(x_init, y_init, playerEvent) {
             }
         }
         if (isMoving["DOWN"]){
-            body.render.sprite.texture = PLAYERS_ASSETS[color].jump[t];
+            body.render.sprite.texture = PLAYERS_ASSETS[color]?.jump[t];
             body.render.sprite.xScale = SCALE;
             body.render.sprite.yScale = SCALE;
             yForce = 0.01;
         }
         if (isMoving["RIGHT"]){
-            body.render.sprite.texture = PLAYERS_ASSETS[color].walkRight[t];
+            body.render.sprite.texture = PLAYERS_ASSETS[color]?.walkRight[t];
             body.render.sprite.xScale = SCALE;
             body.render.sprite.yScale = SCALE;
             xForce = RUN_FORCE;
         }
         if (isMoving["LEFT"]){
-            body.render.sprite.texture = PLAYERS_ASSETS[color].walkLeft[t];
+            body.render.sprite.texture = PLAYERS_ASSETS[color]?.walkLeft[t];
             body.render.sprite.xScale = -SCALE;
             body.render.sprite.yScale = SCALE;
             xForce = -RUN_FORCE;
